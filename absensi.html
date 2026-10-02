@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Siswa - LMS Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Mobile Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden"></div>
+
+    <!-- Sidebar (Konsisten) -->
+    <div id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-30 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-800 flex items-center gap-3">
+            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            LMS Kelas
+        </div>
+        <nav class="p-4 space-y-1">
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mb-2 mt-2">Utama</p>
+            <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> Dashboard
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Manajemen</p>
+            <a href="data-sekolah.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg> Data Sekolah
+            </a>
+            <a href="data-guru.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> Data Guru
+            </a>
+            <a href="data-murid.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Data Murid
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Akademik</p>
+            <a href="absensi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> Absensi
+            </a>
+            <a href="jadwal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Jadwal Pelajaran
+            </a>
+            <a href="materi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Materi & Tugas
+            </a>
+            <a href="jurnal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Jurnal Guru
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Laporan</p>
+            <a href="laporan.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Rekap & Cetak
+            </a>
+        </nav>
+        <div class="p-4 mt-8 mb-4">
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full py-2.5 bg-red-500/20 text-red-300 hover:bg-red-600 hover:text-white rounded-lg text-sm font-semibold transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> Keluar
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="md:ml-64 flex flex-col min-h-screen">
+        <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="text-xl font-bold text-gray-800 hidden sm:block">Input Absensi Harian</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-bold text-gray-800" id="userName">User</div>
+                    <div class="text-xs text-gray-500 capitalize" id="userRole">Role</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg" id="userInitial">U</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <!-- Filter Pemilihan / Akses -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-800">Absensi Harian</h2>
+                        <p id="accessInfo" class="text-sm text-gray-500 mt-1">Memeriksa hak akses...</p>
+                    </div>
+                    <span id="modeBadge" class="hidden px-3 py-1 rounded-full text-xs font-bold"></span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Kelas</label>
+                        <select id="filterKelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="1">Kelas 1</option>
+                            <option value="2">Kelas 2</option>
+                            <option value="3">Kelas 3</option>
+                            <option value="4">Kelas 4</option>
+                            <option value="5">Kelas 5</option>
+                            <option value="6">Kelas 6</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal Absen</label>
+                        <input type="date" id="filterTanggal" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <button onclick="loadSiswaAbsen()" id="btnCari" class="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+                            Tampilkan Absensi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Area Tabel Absen (Muncul setelah klik Mulai Absen) -->
+            <div id="areaAbsen" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                    <span class="text-sm font-bold text-gray-700" id="infoAbsen">Siswa Kelas ....</span>
+                    <button onclick="simpanSemuaAbsen()" id="btnSimpanAbsen" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg text-sm shadow-sm transition-colors">
+                        Simpan Semua Absen
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-600">
+                        <thead class="bg-gray-100 text-gray-700 font-semibold border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4">NIS</th>
+                                <th class="px-6 py-4">Nama Lengkap</th>
+                                <th class="px-6 py-4 text-center w-[300px]">Status Kehadiran</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableAbsenBody" class="divide-y divide-gray-200">
+                            <!-- Diisi via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec";
+
+        // =========================================================
+        // SESI & HAK AKSES
+        // =========================================================
+        const user = JSON.parse(localStorage.getItem('lms_user'));
+        let absensiPermission = null;
+        let listSiswaAktif = [];
+
+        if (!user) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userName').innerText = user.nama || 'User';
+            document.getElementById('userRole').innerText = user.peran || user.role || 'Role';
+            document.getElementById('userInitial').innerText = (user.nama || 'U').charAt(0).toUpperCase();
+        }
+
+        // =========================================================
+        // UTILITAS
+        // =========================================================
+        function getLocalDateString() {
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function logout() {
+            localStorage.removeItem('lms_user');
+            window.location.href = 'index.html';
+        }
+
+        // Sidebar mobile toggle
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        });
+
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        });
+
+        // =========================================================
+        // SIDEBAR BERDASARKAN ROLE
+        // =========================================================
+        function applySidebarAccess() {
+            const role = String(user.role || '').toLowerCase();
+
+            if (role === 'murid') {
+                const linksToHide = ['data-sekolah.html', 'data-guru.html', 'data-murid.html', 'jurnal.html', 'laporan.html'];
+                document.querySelectorAll('#sidebar nav a').forEach(link => {
+                    if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
+                });
+                document.querySelectorAll('#sidebar nav p').forEach(p => {
+                    if (p.innerText.includes('Manajemen') || p.innerText.includes('Laporan')) p.style.display = 'none';
+                });
+            }
+        }
+
+        // =========================================================
+        // AMBIL PERMISSION DARI SERVER
+        // =========================================================
+        async function loadAbsensiPermission() {
+            const accessInfo = document.getElementById('accessInfo');
+            const badge = document.getElementById('modeBadge');
+            const filterKelas = document.getElementById('filterKelas');
+            const btnCari = document.getElementById('btnCari');
+
+            accessInfo.innerText = 'Memeriksa hak akses...';
+            btnCari.disabled = true;
+
+            try {
+                const response = await fetch(`${GAS_URL}?action=getAbsensiAccess&username=${encodeURIComponent(user.username)}`);
+                const result = await response.json();
+
+                if (result.status !== 'success') {
+                    throw new Error(result.message || 'Hak akses tidak dapat diperiksa.');
+                }
+
+                absensiPermission = result.data;
+
+                const role = absensiPermission.role;
+                const peran = absensiPermission.peran;
+
+                if (absensiPermission.canInput) {
+                    badge.innerText = 'MODE INPUT';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-700';
+                } else {
+                    badge.innerText = 'MODE LIHAT';
+                    badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-600';
+                }
+
+                badge.classList.remove('hidden');
+
+                if (role === 'admin' || peran === 'admin') {
+                    accessInfo.innerText = 'Admin: dapat melihat dan mengisi absensi semua kelas.';
+                    enableClassDropdown(true);
+                    filterKelas.value = '';
+                } else if (role === 'guru' && peran === 'guru mapel') {
+                    accessInfo.innerText = 'Guru Mapel: dapat melihat data absensi semua kelas, tetapi tidak dapat mengubahnya.';
+                    enableClassDropdown(true);
+                    filterKelas.value = '';
+                } else if (role === 'guru' && peran === 'guru kelas') {
+                    const kelas = absensiPermission.allowedClasses[0] || '';
+                    if (!kelas) throw new Error('Akses kelas Guru Kelas belum diatur pada Users.');
+                    accessInfo.innerText = `Guru Kelas: akses kelas ${kelas}. Anda dapat mengisi dan mengubah absensi kelas tersebut.`;
+                    setLockedClass(kelas);
+                } else if (role === 'murid' || peran === 'murid') {
+                    const kelas = absensiPermission.allowedClasses[0] || '';
+                    if (!kelas) throw new Error('Kelas murid belum ditemukan pada data Users/Murid.');
+                    accessInfo.innerText = `Siswa: menampilkan data absensi kelas ${kelas}. Anda hanya dapat melihat data.`;
+                    setLockedClass(kelas);
+                } else {
+                    throw new Error('Peran pengguna tidak memiliki akses ke halaman absensi.');
+                }
+
+                btnCari.disabled = false;
+
+                // Admin & Guru Mapel harus memilih kelas dulu.
+                // Guru Kelas & Murid langsung menampilkan data saat halaman dibuka.
+                if (!absensiPermission.mustChooseClass) {
+                    await loadSiswaAbsen(true);
+                }
+            } catch (error) {
+                accessInfo.innerText = error.message;
+                accessInfo.className = 'text-sm text-red-600 mt-1 font-semibold';
+                btnCari.disabled = true;
+                alert(error.message);
+            }
+        }
+
+        function enableClassDropdown(enabled) {
+            const filter = document.getElementById('filterKelas');
+            filter.disabled = !enabled;
+            filter.classList.toggle('bg-gray-200', !enabled);
+            filter.classList.toggle('cursor-not-allowed', !enabled);
+            filter.classList.toggle('text-gray-600', !enabled);
+        }
+
+        function setLockedClass(kelas) {
+            const filter = document.getElementById('filterKelas');
+            filter.value = kelas;
+            filter.disabled = true;
+            filter.classList.add('bg-gray-200', 'cursor-not-allowed', 'text-gray-600');
+        }
+
+        // =========================================================
+        // LOAD DATA ABSENSI
+        // =========================================================
+        async function loadSiswaAbsen(autoLoad = false) {
+            if (!absensiPermission) return alert('Hak akses belum siap.');
+
+            const kelas = document.getElementById('filterKelas').value;
+            const tanggal = document.getElementById('filterTanggal').value;
+
+            if (!kelas) {
+                if (!autoLoad) alert('Silakan pilih kelas terlebih dahulu!');
+                return;
+            }
+
+            if (!tanggal) {
+                alert('Silakan pilih tanggal absensi terlebih dahulu!');
+                return;
+            }
+
+            if (!absensiPermission.allowedClasses.includes(kelas)) {
+                alert('Anda tidak memiliki akses untuk melihat kelas tersebut.');
+                return;
+            }
+
+            const btnCari = document.getElementById('btnCari');
+            const oldText = btnCari.innerText;
+            btnCari.disabled = true;
+            btnCari.innerText = 'Memuat Data...';
+
+            document.getElementById('areaAbsen').classList.remove('hidden');
+            document.getElementById('tableAbsenBody').innerHTML = `
+                <tr><td colspan="3" class="text-center py-8 text-gray-500">
+                    <svg class="animate-spin h-7 w-7 text-indigo-600 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                    </svg>Memuat data absensi...
+                </td></tr>`;
+
+            try {
+                const response = await fetch(`${GAS_URL}?action=getAbsensiData&username=${encodeURIComponent(user.username)}&kelas=${encodeURIComponent(kelas)}&tanggal=${encodeURIComponent(tanggal)}`);
+                const result = await response.json();
+
+                if (result.status !== 'success') {
+                    throw new Error(result.message || 'Gagal mengambil data absensi.');
+                }
+
+                listSiswaAktif = result.data.siswa || [];
+                renderAbsensiTable(result.data);
+            } catch (error) {
+                document.getElementById('tableAbsenBody').innerHTML = `
+                    <tr><td colspan="3" class="text-center py-6 text-red-500 font-semibold">${escapeHtml(error.message)}</td></tr>`;
+            } finally {
+                btnCari.disabled = false;
+                btnCari.innerText = oldText;
+            }
+        }
+
+        // =========================================================
+        // RENDER TABEL
+        // =========================================================
+        function renderAbsensiTable(data) {
+            const tbody = document.getElementById('tableAbsenBody');
+            const btnSimpan = document.getElementById('btnSimpanAbsen');
+            const info = document.getElementById('infoAbsen');
+
+            const canInput = data.canInput === true;
+            btnSimpan.style.display = canInput ? '' : 'none';
+
+            info.innerText = `${canInput ? 'Mengabsen' : 'Melihat Absensi'}: Kelas ${data.kelas} • Tanggal: ${data.tanggal}`;
+
+            if (!data.siswa || data.siswa.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="text-center py-6 text-gray-500">Tidak ada murid terdaftar di kelas ini.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = data.siswa.map(s => {
+                const statusAktif = ['H','S','I','A'].includes(s.status) ? s.status : 'H';
+                const disabled = canInput ? '' : 'disabled';
+                const readonlyClass = canInput ? '' : 'opacity-90 cursor-default';
+
+                const styleH = statusAktif === 'H' ? 'bg-emerald-600 text-white border-emerald-500' : 'bg-gray-100 text-gray-700 border-gray-300';
+                const styleS = statusAktif === 'S' ? 'bg-amber-500 text-white border-amber-500' : 'bg-gray-100 text-gray-700 border-gray-300';
+                const styleI = statusAktif === 'I' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-100 text-gray-700 border-gray-300';
+                const styleA = statusAktif === 'A' ? 'bg-red-500 text-white border-red-500' : 'bg-gray-100 text-gray-700 border-gray-300';
+
+                return `
+                    <tr class="hover:bg-gray-50 transition-colors" data-nis="${escapeHtml(s.nis)}">
+                        <td class="px-6 py-4 font-bold text-gray-800 whitespace-nowrap">${escapeHtml(s.nis)}</td>
+                        <td class="px-6 py-4 font-medium text-gray-700">${escapeHtml(s.nama)}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex justify-center gap-2 text-xs font-bold" data-selected="${statusAktif}">
+                                <button type="button" onclick="setQuickStatus('${escapeHtml(s.nis)}', 'H')" id="btn-H-${escapeHtml(s.nis)}" ${disabled} class="status-btn flex-1 py-2 rounded-lg border transition-all ${styleH} ${readonlyClass}">H</button>
+                                <button type="button" onclick="setQuickStatus('${escapeHtml(s.nis)}', 'S')" id="btn-S-${escapeHtml(s.nis)}" ${disabled} class="status-btn flex-1 py-2 rounded-lg border transition-all ${styleS} ${readonlyClass}">S</button>
+                                <button type="button" onclick="setQuickStatus('${escapeHtml(s.nis)}', 'I')" id="btn-I-${escapeHtml(s.nis)}" ${disabled} class="status-btn flex-1 py-2 rounded-lg border transition-all ${styleI} ${readonlyClass}">I</button>
+                                <button type="button" onclick="setQuickStatus('${escapeHtml(s.nis)}', 'A')" id="btn-A-${escapeHtml(s.nis)}" ${disabled} class="status-btn flex-1 py-2 rounded-lg border transition-all ${styleA} ${readonlyClass}">A</button>
+                            </div>
+                        </td>
+                    </tr>`;
+            }).join('');
+        }
+
+        // =========================================================
+        // UBAH STATUS DI TABEL
+        // =========================================================
+        function setQuickStatus(nis, status) {
+            if (!absensiPermission || !absensiPermission.canInput) return;
+
+            const btnH = document.getElementById(`btn-H-${nis}`);
+            const btnS = document.getElementById(`btn-S-${nis}`);
+            const btnI = document.getElementById(`btn-I-${nis}`);
+            const btnA = document.getElementById(`btn-A-${nis}`);
+
+            const listBtn = [
+                { el: btnH, status: 'H', activeClass: 'bg-emerald-600 text-white border-emerald-500', normalClass: 'bg-gray-100 text-gray-700 border-gray-300' },
+                { el: btnS, status: 'S', activeClass: 'bg-amber-500 text-white border-amber-500', normalClass: 'bg-gray-100 text-gray-700 border-gray-300' },
+                { el: btnI, status: 'I', activeClass: 'bg-blue-500 text-white border-blue-500', normalClass: 'bg-gray-100 text-gray-700 border-gray-300' },
+                { el: btnA, status: 'A', activeClass: 'bg-red-500 text-white border-red-500', normalClass: 'bg-gray-100 text-gray-700 border-gray-300' }
+            ];
+
+            listBtn.forEach(item => {
+                if (!item.el) return;
+                item.el.className = `status-btn flex-1 py-2 rounded-lg border transition-all ${item.normalClass}`;
+            });
+
+            const target = listBtn.find(item => item.status === status);
+            if (target && target.el) {
+                target.el.className = `status-btn flex-1 py-2 rounded-lg border transition-all ${target.activeClass}`;
+                target.el.parentElement.setAttribute('data-selected', status);
+            }
+        }
+
+        // =========================================================
+        // SIMPAN SEMUA ABSEN
+        // =========================================================
+        async function simpanSemuaAbsen() {
+            if (!absensiPermission || !absensiPermission.canInput) {
+                return alert('Akses ditolak. Anda hanya dapat melihat data absensi.');
+            }
+
+            const btnSimpan = document.getElementById('btnSimpanAbsen');
+            const kelas = document.getElementById('filterKelas').value;
+            const tanggal = document.getElementById('filterTanggal').value;
+
+            if (!kelas || !tanggal) return alert('Kelas dan tanggal wajib dipilih.');
+
+            btnSimpan.disabled = true;
+            btnSimpan.innerText = 'Menyimpan...';
+
+            const dataAbsenDikirim = [];
+            const rows = document.querySelectorAll('#tableAbsenBody tr[data-nis]');
+
+            rows.forEach(row => {
+                const nis = row.getAttribute('data-nis');
+                const siswa = listSiswaAktif.find(s => String(s.nis) === String(nis));
+                const statusSelected = row.querySelector('[data-selected]')?.getAttribute('data-selected') || 'H';
+
+                if (nis && siswa) {
+                    dataAbsenDikirim.push({
+                        tanggal: tanggal,
+                        kelas: kelas,
+                        nis: nis,
+                        nama_murid: siswa.nama,
+                        status: statusSelected
+                    });
+                }
+            });
+
+            if (!dataAbsenDikirim.length) {
+                btnSimpan.disabled = false;
+                btnSimpan.innerText = 'Simpan Semua Absen';
+                return alert('Tidak ada data siswa untuk disimpan.');
+            }
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'inputAbsensiBulk',
+                        payload: {
+                            username: user.username,
+                            data_absen: dataAbsenDikirim
+                        }
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert('Luar biasa! Seluruh data absensi berhasil disimpan ke Google Sheets.');
+                    await loadSiswaAbsen(true);
+                } else {
+                    alert('Gagal menyimpan: ' + result.message);
+                }
+            } catch (error) {
+                alert('Terjadi kesalahan jaringan saat menyimpan absen.');
+            } finally {
+                btnSimpan.disabled = false;
+                btnSimpan.innerText = 'Simpan Semua Absen';
+            }
+        }
+
+        // =========================================================
+        // INIT
+        // =========================================================
+        document.getElementById('filterTanggal').value = getLocalDateString();
+        applySidebarAccess();
+        window.addEventListener('DOMContentLoaded', loadAbsensiPermission);
+    </script>
+
+<script>
+(function(){try{
+ const u=JSON.parse(localStorage.getItem('lms_user')||'null');
+ const role=String((u&&u.role)||'').toLowerCase(), peran=String((u&&u.peran)||'').toLowerCase();
+ if(!u||!(role==='guru'||role==='admin'||peran==='admin')) return;
+ const nav=document.querySelector('#sidebar nav'), materi=nav&&nav.querySelector('a[href="materi.html"]');
+ if(nav&&materi&&!nav.querySelector('[data-menu-nilai]')){
+  const a=document.createElement('a'); a.href='nilai.html'; a.dataset.menuNilai='1';
+  a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors';
+  a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5-1a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Input Nilai';
+  materi.insertAdjacentElement('afterend',a);
+ }
+ if(location.pathname.toLowerCase().endsWith('/dashboard.html')){
+  const group=document.querySelector('#btnIsiJurnal')?.parentElement;
+  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
+ }
+}catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
+</script>
+</body>
+</html>

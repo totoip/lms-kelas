@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Guru - LMS Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Mobile Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-30 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-800 flex items-center gap-3">
+            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            LMS Kelas
+        </div>
+        <nav class="p-4 space-y-1">
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mb-2 mt-2">Utama</p>
+            <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> Dashboard
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Manajemen</p>
+            <a href="data-sekolah.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg> Data Sekolah
+            </a>
+            <a href="data-guru.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> Data Guru
+            </a>
+            <a href="data-murid.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Data Murid
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Akademik</p>
+            <a href="absensi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> Absensi
+            </a>
+            <a href="jadwal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Jadwal Pelajaran
+            </a>
+            <a href="materi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Materi & Tugas
+            </a>
+            <a href="jurnal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Jurnal Guru
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Laporan</p>
+            <a href="laporan.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Rekap & Cetak
+            </a>
+        </nav>
+        <div class="p-4 mt-8 mb-4">
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full py-2.5 bg-red-500/20 text-red-300 hover:bg-red-600 hover:text-white rounded-lg text-sm font-semibold transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> Keluar
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="md:ml-64 flex flex-col min-h-screen">
+        <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="text-xl font-bold text-gray-800 hidden sm:block">Manajemen Jurnal Mengajar</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-bold text-gray-800" id="userName">User</div>
+                    <div class="text-xs text-gray-500 capitalize" id="userRole">Role</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg" id="userInitial">U</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4 border-b border-gray-200 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Jurnal Guru</h2>
+                    <p class="text-gray-500 text-sm mt-1">Catat dan pantau aktivitas belajar mengajar harian.</p>
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto" id="areaBtnTambahJurnal">
+                    <!-- Tombol Tambah Jurnal -->
+                </div>
+            </div>
+
+            <!-- Filter Pemilihan -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 items-end">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Kelas</label>
+                        <select id="filterKelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">Semua Kelas</option>
+                            <option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option>
+                            <option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran</label>
+                        <input type="text" id="filterMapel" placeholder="Ketik Mapel..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan/Tahun</label>
+                        <input type="month" id="filterBulan" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <button onclick="loadJurnal()" id="btnCari" class="w-full px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg text-sm transition-colors flex items-center justify-center gap-2 h-10">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg> Filter Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingState" class="hidden p-12 text-center text-gray-500 bg-white rounded-xl shadow-sm border border-gray-200">
+                <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Menarik data Jurnal Guru...
+            </div>
+
+            <!-- Tabel Data Jurnal -->
+            <div id="areaTable" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-600 whitespace-nowrap">
+                        <thead class="bg-gray-100 text-gray-700 font-semibold border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4">Waktu Pelaksanaan</th>
+                                <th class="px-6 py-4">Kelas & Mapel</th>
+                                <th class="px-6 py-4">Materi Pokok, Kegiatan & Catatan</th>
+                                <th class="px-6 py-4 text-center">Kehadiran</th>
+                                <th class="px-6 py-4 text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableJurnalBody" class="divide-y divide-gray-200">
+                            <tr><td colspan="5" class="text-center py-6 text-gray-500 italic">Klik "Filter Data" untuk memuat jurnal.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL TAMBAH JURNAL -->
+    <div id="modalTambahJurnal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-indigo-50 rounded-t-2xl flex-shrink-0">
+                <h3 class="text-lg font-bold text-indigo-900">Isi Jurnal Mengajar</h3>
+                <button onclick="toggleModal('modalTambahJurnal')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="overflow-y-auto p-6 space-y-4 flex-1">
+                <form id="formTambahJurnal" class="space-y-4">
+				<div>
+				<label class="block text-sm font-semibold text-gray-700 mb-1">Nama Guru</label>
+				<!-- Atribut readonly & bg-gray-100 bikin form ini gak bisa diketik manual -->
+				<input type="text" id="addJrn_NamaGuru" readonly class="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-lg text-gray-600 cursor-not-allowed">
+				</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal *</label>
+                            <input type="date" id="addJrn_Tanggal" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" onchange="autoSyncAbsen('add')">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hari *</label>
+                            <select id="addJrn_Hari" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="Senin">Senin</option><option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option><option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option><option value="Sabtu">Sabtu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas *</label>
+                            <select id="addJrn_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" onchange="autoSyncAbsen('add')">
+                                <option value="">Pilih</option>
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Jam Ke- *</label>
+                            <input type="text" id="addJrn_JamKe" placeholder="Cth: 1-2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-center focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="col-span-3 sm:col-span-1">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label>
+                            <input type="text" id="addJrn_Mapel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 bg-blue-50 rounded-lg border border-blue-100 flex flex-col sm:flex-row gap-4 items-center">
+                        <div class="flex-1 text-xs text-blue-800">Sistem otomatis menghitung kehadiran dari menu <b>Absensi Harian</b>.</div>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <div>
+                                <label class="block text-xs font-bold text-emerald-700 mb-1 text-center">Hadir</label>
+                                <input type="number" id="addJrn_Hadir" min="0" required class="w-full sm:w-16 px-2 py-1.5 border border-emerald-300 bg-emerald-50 rounded text-center font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-700 mb-1 text-center">Tdk Hadir</label>
+                                <input type="number" id="addJrn_Absen" min="0" required class="w-full sm:w-16 px-2 py-1.5 border border-red-300 bg-red-50 rounded text-center font-bold">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Materi Pokok *</label>
+                        <textarea id="addJrn_Materi" rows="2" required placeholder="Pokok bahasan materi hari ini..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Kegiatan Pembelajaran *</label>
+                        <textarea id="addJrn_Kegiatan" rows="2" required placeholder="Aktivitas siswa selama pembelajaran..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Catatan</label>
+                        <textarea id="addJrn_Catatan" rows="2" placeholder="Catatan khusus atau kendala (opsional)..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                        <button type="button" onclick="toggleModal('modalTambahJurnal')" class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-semibold">Batal</button>
+                        <button type="submit" id="btnSimpanJurnal" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold shadow-sm">Simpan Jurnal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT JURNAL -->
+    <div id="modalEditJurnal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-amber-50 rounded-t-2xl flex-shrink-0">
+                <h3 class="text-lg font-bold text-amber-900">Edit Jurnal Mengajar</h3>
+                <button onclick="toggleModal('modalEditJurnal')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="overflow-y-auto p-6 space-y-4 flex-1">
+                <form id="formEditJurnal" class="space-y-4">
+				
+                    <input type="hidden" id="editJrn_ID">
+					<div>
+					<label class="block text-sm font-semibold text-gray-700 mb-1">Nama Guru</label>
+					<input type="text" id="editJrn_NamaGuru" readonly class="w-full px-4 py-2 border border-gray-300 bg-gray-100 rounded-lg text-gray-600 cursor-not-allowed">
+					</div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal *</label>
+                            <input type="date" id="editJrn_Tanggal" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" onchange="autoSyncAbsen('edit')">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Hari *</label>
+                            <select id="editJrn_Hari" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                                <option value="Senin">Senin</option><option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option><option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option><option value="Sabtu">Sabtu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas *</label>
+                            <select id="editJrn_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500" onchange="autoSyncAbsen('edit')">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Jam Ke- *</label>
+                            <input type="text" id="editJrn_JamKe" placeholder="Cth: 1-2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg text-center focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <div class="col-span-3 sm:col-span-1">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label>
+                            <input type="text" id="editJrn_Mapel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 bg-amber-50 rounded-lg border border-amber-100 flex flex-col sm:flex-row gap-4 items-center">
+                        <div class="flex-1 text-xs text-amber-800">Cek ulang data kehadiran.</div>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <div>
+                                <label class="block text-xs font-bold text-emerald-700 mb-1 text-center">Hadir</label>
+                                <input type="number" id="editJrn_Hadir" min="0" required class="w-full sm:w-16 px-2 py-1.5 border border-emerald-300 bg-emerald-50 rounded text-center font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-700 mb-1 text-center">Tdk Hadir</label>
+                                <input type="number" id="editJrn_Absen" min="0" required class="w-full sm:w-16 px-2 py-1.5 border border-red-300 bg-red-50 rounded text-center font-bold">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Materi Pokok *</label>
+                        <textarea id="editJrn_Materi" rows="2" required placeholder="Pokok bahasan materi hari ini..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Kegiatan Pembelajaran *</label>
+                        <textarea id="editJrn_Kegiatan" rows="2" required placeholder="Aktivitas siswa selama pembelajaran..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Catatan</label>
+                        <textarea id="editJrn_Catatan" rows="2" placeholder="Catatan khusus atau kendala (opsional)..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></textarea>
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                        <button type="button" onclick="toggleModal('modalEditJurnal')" class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-semibold">Batal</button>
+                        <button type="submit" id="btnUpdateJurnal" class="px-5 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold shadow-sm">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec";
+
+        const today = new Date();
+        const yy = today.getFullYear();
+        let mm = today.getMonth() + 1;
+        document.getElementById('filterBulan').value = `${yy}-${mm.toString().padStart(2, '0')}`;
+        document.getElementById('addJrn_Tanggal').value = today.toISOString().split('T')[0];
+
+        const user = JSON.parse(localStorage.getItem('lms_user'));
+        if (!user) window.location.href = 'index.html'; 
+        else {
+            document.getElementById('userName').innerText = user.nama;
+            document.getElementById('userRole').innerText = user.role;
+            document.getElementById('userInitial').innerText = user.nama.charAt(0).toUpperCase();
+			document.getElementById('addJrn_NamaGuru').value = user.nama;
+			document.getElementById('editJrn_NamaGuru').value = user.nama;
+
+            if(user.role === 'admin' || user.role === 'guru') {
+                document.getElementById('areaBtnTambahJurnal').innerHTML = `
+                    <button onclick="bukaModalTambahJurnal()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 shadow-sm transition-colors flex items-center gap-2 whitespace-nowrap">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Tambah Jurnal
+                    </button>
+                `;
+            }
+
+            // Atur akses kelas jurnal:
+            // Admin & Guru Mapel = semua kelas.
+            // Guru Kelas = hanya kelas pada kolom Akses.
+            setupJournalClassAccess();
+
+            // Jika Guru Kelas sudah punya kelas yang terkunci, langsung ambil
+            // rekap absensi untuk tanggal default pada form tambah.
+            if (user.role === 'guru' && (user.peran || '').toLowerCase() === 'guru kelas') {
+                setTimeout(() => autoSyncAbsen('add'), 100);
+            }
+        }
+
+        // Script Sakti Sembunyikan Menu Murid
+        if (user.role === 'murid') {
+            const linksToHide = ['data-sekolah.html', 'data-guru.html', 'data-murid.html', 'jurnal.html', 'laporan.html'];
+            document.querySelectorAll('#sidebar nav a').forEach(link => {
+                if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
+            });
+            document.querySelectorAll('#sidebar nav p').forEach(p => {
+                if (p.innerText.includes('Manajemen') || p.innerText.includes('Laporan')) p.style.display = 'none';
+            });
+            const btnJurnal = document.querySelector('a[href="jurnal.html"]');
+            if (btnJurnal) btnJurnal.style.display = 'none';
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        });
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        });
+
+        function logout() { localStorage.removeItem('lms_user'); window.location.href = 'index.html'; }
+        
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            if(modal.classList.contains('hidden')){
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.children[0].classList.replace('scale-95', 'scale-100'), 10);
+            } else {
+                modal.children[0].classList.replace('scale-100', 'scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 200);
+            }
+        }
+
+        // Buka form tambah jurnal dan langsung sinkronkan absensi.
+        // Khusus Guru Kelas, kelas sudah dikunci sesuai akses akunnya.
+        function bukaModalTambahJurnal() {
+            toggleModal('modalTambahJurnal');
+            setTimeout(() => {
+                if (user && user.role === 'guru' && (user.peran || '').toLowerCase() === 'guru kelas') {
+                    autoSyncAbsen('add');
+                }
+            }, 50);
+        }
+
+        // ==========================================
+        // AUTO SYNC ABSENSI
+        // ==========================================
+        async function autoSyncAbsen(tipe) {
+            let prefix = tipe === 'edit' ? 'editJrn' : 'addJrn';
+            const tanggal = document.getElementById(`${prefix}_Tanggal`).value;
+            const kelas = document.getElementById(`${prefix}_Kelas`).value;
+
+            if(!tanggal || !kelas) return;
+
+            document.getElementById(`${prefix}_Hadir`).value = '...';
+            document.getElementById(`${prefix}_Absen`).value = '...';
+
+            try {
+                const response = await fetch(`${GAS_URL}?action=getRekapAbsen&tanggal=${tanggal}&kelas=${kelas}`);
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    document.getElementById(`${prefix}_Hadir`).value = result.data.hadir;
+                    document.getElementById(`${prefix}_Absen`).value = result.data.absen;
+                } else {
+                    document.getElementById(`${prefix}_Hadir`).value = '0';
+                    document.getElementById(`${prefix}_Absen`).value = '0';
+                }
+            } catch(e) {
+                document.getElementById(`${prefix}_Hadir`).value = '';
+                document.getElementById(`${prefix}_Absen`).value = '';
+            }
+        }
+
+        // ==========================================
+        // AKSES KELAS JURNAL
+        // ==========================================
+        function setupJournalClassAccess() {
+            const isAdmin = user.role === 'admin' || (user.peran || '').toLowerCase() === 'admin';
+            const isGuruMapel = user.role === 'guru' && (user.peran || '').toLowerCase() === 'guru mapel';
+            const isGuruKelas = user.role === 'guru' && (user.peran || '').toLowerCase() === 'guru kelas';
+
+            const filterKelas = document.getElementById('filterKelas');
+            const addKelas = document.getElementById('addJrn_Kelas');
+            const editKelas = document.getElementById('editJrn_Kelas');
+
+            if (isGuruKelas && !isAdmin && !isGuruMapel) {
+                const kelas = (user.akses || '').toString().trim();
+
+                filterKelas.innerHTML = `<option value="${kelas}">Kelas ${kelas}</option>`;
+                filterKelas.value = kelas;
+                filterKelas.disabled = true;
+
+                addKelas.innerHTML = `<option value="${kelas}">${kelas}</option>`;
+                addKelas.value = kelas;
+                addKelas.disabled = true;
+
+                editKelas.innerHTML = `<option value="${kelas}">${kelas}</option>`;
+                editKelas.value = kelas;
+                editKelas.disabled = true;
+            } else {
+                // Admin dan Guru Mapel tetap dapat memilih semua kelas.
+                filterKelas.innerHTML = `
+                    <option value="">Semua Kelas</option>
+                    <option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option>
+                    <option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option>
+                `;
+                addKelas.innerHTML = `
+                    <option value="">Pilih</option>
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                `;
+                editKelas.innerHTML = `
+                    <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                    <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                `;
+                filterKelas.disabled = false;
+                addKelas.disabled = false;
+                editKelas.disabled = false;
+            }
+        }
+
+        // ==========================================
+        // LOAD DATA JURNAL (READ)
+        // ==========================================
+        async function loadJurnal() {
+            const kls = document.getElementById('filterKelas').value;
+            const mpl = document.getElementById('filterMapel').value.toLowerCase();
+            const bln = document.getElementById('filterBulan').value; 
+
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('tableJurnalBody').innerHTML = '';
+
+            try {
+                const response = await fetch(`${GAS_URL}?action=getJurnal&username=${encodeURIComponent(user.username)}`);
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    let filtered = result.data;
+                    
+                    if(kls) filtered = filtered.filter(j => j.kelas == kls);
+                    if(mpl) filtered = filtered.filter(j => j.mapel.toLowerCase().includes(mpl));
+                    if(bln) {
+                        filtered = filtered.filter(j => {
+                            const jrnBulan = j.tanggal.includes('T') ? j.tanggal.split('T')[0].substring(0,7) : j.tanggal.substring(0,7);
+                            return jrnBulan === bln;
+                        });
+                    }
+
+                    if(filtered.length === 0) {
+                        document.getElementById('tableJurnalBody').innerHTML = `<tr><td colspan="5" class="text-center py-6 text-gray-500">Tidak ada data jurnal ditemukan.</td></tr>`;
+                    } else {
+                        filtered.forEach(j => {
+                            let actionBtn = '-';
+                            const formatTglRaw = j.tanggal.includes('T') ? j.tanggal.split('T')[0] : j.tanggal;
+                            
+                            // Semua jurnal yang tampil memang sudah disaring oleh backend
+                            // sesuai hak akses user yang sedang login.
+                            if(user.role === 'admin' || user.role === 'guru') {
+                                actionBtn = `
+                                <div class="flex gap-2 justify-center">
+                                    <button onclick="bukaModalEditJurnal('${j.id}', '${formatTglRaw}', '${j.hari}', '${j.jam_ke}', '${j.kelas}', '${j.mapel.replace(/'/g, "\\'")}', '${(j.materi_pokok || '').replace(/'/g, "\\'")}', '${(j.kegiatan || '').replace(/'/g, "\\'")}', '${(j.catatan || '').replace(/'/g, "\\'")}', '${j.hadir}', '${j.tidak_hadir}')" class="text-amber-500 hover:text-amber-700 hover:bg-amber-50 p-1.5 rounded transition-colors" title="Edit Jurnal">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                                    </button>
+                                    <button onclick="hapusJurnal('${j.id}')" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-1.5 rounded transition-colors" title="Hapus Jurnal">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                                    </button>
+                                </div>`;
+                            }
+
+                            const d = new Date(formatTglRaw);
+                            const tglIndo = isNaN(d) ? formatTglRaw : d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+                            document.getElementById('tableJurnalBody').innerHTML += `
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-gray-800">${tglIndo}</div>
+                                        <div class="text-xs text-gray-500">${j.hari}</div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded inline-block mb-1 border border-indigo-100 text-xs">Kelas ${j.kelas}</div>
+                                        <div class="text-sm font-semibold text-gray-800 truncate max-w-[150px]" title="${j.mapel}">
+                                            <span class="text-indigo-400 mr-1 text-xs">Jam #${j.jam_ke}</span>${j.mapel}
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 max-w-[280px] whitespace-normal">
+                                        <div class="text-sm font-bold text-gray-800 mb-0.5"><b>Materi:</b> ${j.materi_pokok}</div>
+                                        <div class="text-xs text-gray-600 mb-0.5"><b>Kegiatan:</b> ${j.kegiatan || '-'}</div>
+                                        <div class="text-xs text-gray-500 italic"><b>Catatan:</b> ${j.catatan || '-'}</div>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <div class="flex gap-2 justify-center">
+                                            <div class="flex flex-col items-center"><span class="text-[10px] text-emerald-600 font-bold uppercase">Hadir</span><span class="bg-emerald-100 text-emerald-800 px-2 rounded-md font-mono text-sm">${j.hadir}</span></div>
+                                            <div class="flex flex-col items-center"><span class="text-[10px] text-red-600 font-bold uppercase">Tdk</span><span class="bg-red-100 text-red-800 px-2 rounded-md font-mono text-sm">${j.tidak_hadir}</span></div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        ${actionBtn}
+                                    </td>
+                                </tr>
+                            `;
+                        });
+                    }
+                } else {
+                    document.getElementById('tableJurnalBody').innerHTML = `<tr><td colspan="5" class="text-center py-6 text-red-500">${result.message || 'Akses ditolak.'}</td></tr>`;
+                }
+            } catch (error) {
+                alert('Gagal terkoneksi dengan database.');
+            } finally {
+                document.getElementById('loadingState').classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // TAMBAH JURNAL (CREATE)
+        // ==========================================
+        document.getElementById('formTambahJurnal').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSimpanJurnal');
+            btn.disabled = true; btn.innerHTML = 'Menyimpan...';
+
+            const payload = {
+                username: user.username,
+                nama_guru: document.getElementById('userName').innerText,
+                tanggal: document.getElementById('addJrn_Tanggal').value,
+                hari: document.getElementById('addJrn_Hari').value,
+                jam_ke: document.getElementById('addJrn_JamKe').value.trim(),
+                kelas: document.getElementById('addJrn_Kelas').value,
+                mapel: document.getElementById('addJrn_Mapel').value.trim(),
+                materi_pokok: document.getElementById('addJrn_Materi').value.trim(),
+                hadir: document.getElementById('addJrn_Hadir').value || 0,
+                tidak_hadir: document.getElementById('addJrn_Absen').value || 0,
+                kegiatan: document.getElementById('addJrn_Kegiatan').value.trim(),
+                catatan: document.getElementById('addJrn_Catatan').value.trim()
+            };
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'tambahJurnal', payload: payload })
+                });
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    alert('Data jurnal berhasil disimpan!');
+                    toggleModal('modalTambahJurnal');
+                    document.getElementById('formTambahJurnal').reset();
+                    document.getElementById('addJrn_Tanggal').value = new Date().toISOString().split('T')[0];
+
+                    // Form Guru Kelas tetap memakai kelas yang sudah dikunci
+                    // dan langsung menghitung ulang rekap absensi.
+                    if (user.role === 'guru' && (user.peran || '').toLowerCase() === 'guru kelas') {
+                        autoSyncAbsen('add');
+                    }
+
+                    loadJurnal(); 
+                } else alert('Gagal: ' + result.message);
+            } catch (error) { alert('Terjadi kesalahan koneksi.'); } 
+            finally { btn.innerHTML = 'Simpan Jurnal'; btn.disabled = false; }
+        });
+
+        // ==========================================
+        // EDIT JURNAL (UPDATE)
+        // ==========================================
+        function bukaModalEditJurnal(id, tgl, hari, jam, kelas, mapel, materi, kegiatan, catatan, hadir, tidak_hadir) {
+            document.getElementById('editJrn_ID').value = id;
+            document.getElementById('editJrn_Tanggal').value = tgl;
+            document.getElementById('editJrn_Hari').value = hari;
+            document.getElementById('editJrn_JamKe').value = jam;
+            document.getElementById('editJrn_Kelas').value = kelas;
+            document.getElementById('editJrn_Mapel').value = mapel;
+            document.getElementById('editJrn_Materi').value = materi;
+            document.getElementById('editJrn_Kegiatan').value = kegiatan;
+            document.getElementById('editJrn_Catatan').value = catatan;
+            document.getElementById('editJrn_Hadir').value = hadir;
+            document.getElementById('editJrn_Absen').value = tidak_hadir;
+            
+            toggleModal('modalEditJurnal');
+        }
+
+        document.getElementById('formEditJurnal').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnUpdateJurnal');
+            btn.disabled = true; btn.innerHTML = 'Menyimpan...';
+
+            const payload = {
+                id: document.getElementById('editJrn_ID').value,
+                username: user.username,
+                nama_guru: document.getElementById('userName').innerText,
+                tanggal: document.getElementById('editJrn_Tanggal').value,
+                hari: document.getElementById('editJrn_Hari').value,
+                jam_ke: document.getElementById('editJrn_JamKe').value.trim(),
+                kelas: document.getElementById('editJrn_Kelas').value,
+                mapel: document.getElementById('editJrn_Mapel').value.trim(),
+                materi_pokok: document.getElementById('editJrn_Materi').value.trim(),
+                hadir: document.getElementById('editJrn_Hadir').value || 0,
+                tidak_hadir: document.getElementById('editJrn_Absen').value || 0,
+                kegiatan: document.getElementById('editJrn_Kegiatan').value.trim(),
+                catatan: document.getElementById('editJrn_Catatan').value.trim()
+            };
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'editJurnal', payload: payload })
+                });
+                const result = await response.json();
+
+                if(result.status === 'success') {
+                    alert('Data jurnal berhasil diperbarui!');
+                    toggleModal('modalEditJurnal');
+                    loadJurnal(); 
+                } else alert('Gagal: ' + result.message);
+            } catch (error) { alert('Terjadi kesalahan koneksi.'); } 
+            finally { btn.innerHTML = 'Simpan Perubahan'; btn.disabled = false; }
+        });
+
+        // ==========================================
+        // HAPUS JURNAL (DELETE)
+        // ==========================================
+        async function hapusJurnal(id) {
+            if (confirm('Yakin ingin menghapus catatan jurnal ini?')) {
+                try {
+                    const res = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ action: 'hapusJurnal', payload: { id: id, username: user.username } }) });
+                    const result = await res.json();
+                    if(result.status === 'success') { loadJurnal(); }
+                } catch(e) { alert('Gagal menghapus.'); }
+            }
+        }
+    </script>
+
+<script>
+(function(){try{
+ const u=JSON.parse(localStorage.getItem('lms_user')||'null');
+ const role=String((u&&u.role)||'').toLowerCase(), peran=String((u&&u.peran)||'').toLowerCase();
+ if(!u||!(role==='guru'||role==='admin'||peran==='admin')) return;
+ const nav=document.querySelector('#sidebar nav'), materi=nav&&nav.querySelector('a[href="materi.html"]');
+ if(nav&&materi&&!nav.querySelector('[data-menu-nilai]')){
+  const a=document.createElement('a'); a.href='nilai.html'; a.dataset.menuNilai='1';
+  a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors';
+  a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5-1a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Input Nilai';
+  materi.insertAdjacentElement('afterend',a);
+ }
+ if(location.pathname.toLowerCase().endsWith('/dashboard.html')){
+  const group=document.querySelector('#btnIsiJurnal')?.parentElement;
+  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
+ }
+}catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
+</script>
+</body>
+</html>

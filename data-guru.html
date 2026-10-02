@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Guru - LMS Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Mobile Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-30 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-800 flex items-center gap-3">
+            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            LMS Kelas
+        </div>
+        <nav class="p-4 space-y-1">
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mb-2 mt-2">Utama</p>
+            <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> Dashboard
+            </a>
+            
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Manajemen</p>
+            <a href="data-sekolah.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg> Data Sekolah
+            </a>
+            <a href="data-guru.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> Data Guru
+            </a>
+            <a href="data-murid.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Data Murid
+            </a>
+            
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Akademik</p>
+            <a href="absensi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> Absensi
+            </a>
+            <a href="jadwal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Jadwal Pelajaran
+            </a>
+            <a href="materi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Materi & Tugas
+            </a>
+            <a href="jurnal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Jurnal Guru
+            </a>
+            
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Laporan</p>
+            <a href="laporan.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Rekap & Cetak
+            </a>
+        </nav>
+
+        <div class="p-4 mt-8 mb-4">
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full py-2.5 bg-red-500/20 text-red-300 hover:bg-red-600 hover:text-white rounded-lg text-sm font-semibold transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> Keluar
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="md:ml-64 flex flex-col min-h-screen">
+        
+        <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="text-xl font-bold text-gray-800 hidden sm:block">Manajemen Guru</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-bold text-gray-800" id="userName">User</div>
+                    <div class="text-xs text-gray-500 capitalize" id="userRole">Role</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg" id="userInitial">U</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Daftar Guru</h2>
+                    <p class="text-gray-500 text-sm mt-1">Kelola data induk dan akun login Tenaga Pendidik.</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                    <!-- FILTER STATUS -->
+                    <select id="filterStatus" onchange="applyFilter()" class="px-3 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="all">Semua Status</option>
+                        <option value="Aktif">Guru Aktif</option>
+                        <option value="Non-Aktif">Non-Aktif / Pindah</option>
+                    </select>
+
+                    <button onclick="toggleModal('modalImport')" class="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm font-semibold hover:bg-gray-50 shadow-sm transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg> Import Excel
+                    </button>
+                    <button onclick="toggleModal('modalTambah')" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 shadow-sm transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Tambah Guru
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabel Data -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-600">
+                        <thead class="bg-gray-50 text-gray-700 font-semibold border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-4 whitespace-nowrap cursor-pointer hover:bg-gray-200 transition-colors" onclick="sortBy('nip')">
+                                    NIP <span id="icon-nip" class="text-gray-400 font-normal ml-1">↕</span>
+                                </th>
+                                <th class="px-6 py-4 whitespace-nowrap cursor-pointer hover:bg-gray-200 transition-colors" onclick="sortBy('nama')">
+                                    Nama Lengkap <span id="icon-nama" class="text-gray-400 font-normal ml-1">↕</span>
+                                </th>
+                                <th class="px-6 py-4 whitespace-nowrap">TTL</th>
+                                <th class="px-6 py-4 whitespace-nowrap">L/P</th>
+                                <th class="px-6 py-4 whitespace-nowrap">Peran / Akses</th>
+                                <th class="px-6 py-4 min-w-[200px]">Alamat</th>
+                                <th class="px-6 py-4 whitespace-nowrap cursor-pointer hover:bg-gray-200 transition-colors" onclick="sortBy('status')">
+                                    Status <span id="icon-status" class="text-gray-400 font-normal ml-1">↕</span>
+                                </th>
+                                <th class="px-6 py-4 text-center whitespace-nowrap">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody" class="divide-y divide-gray-200">
+                            <!-- Data dimuat via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL IMPORT DATA -->
+    <div id="modalImport" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Import Data Guru</h3>
+                <button onclick="toggleModal('modalImport')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <form id="formImportGuru" class="flex flex-col">
+                <div class="p-6">
+                    <div class="mb-5">
+                        <p class="text-sm font-semibold text-gray-700 mb-1">Langkah 1: Unduh Format Excel</p>
+                        <button type="button" onclick="downloadTemplateCSV()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Unduh Template Excel
+                        </button>
+                    </div>
+                    <div class="border-t border-gray-200 my-4"></div>
+                    <div>
+                        <p class="text-sm font-semibold text-gray-700 mb-1">Langkah 2: Unggah File Excel</p>
+                        <div class="flex items-center justify-center w-full">
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <svg class="w-8 h-8 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                    <p class="mb-1 text-sm text-gray-500"><span class="font-semibold">Klik untuk mengunggah</span></p>
+                                </div>
+                                <input id="dropzone-file" type="file" accept=".csv,.xlsx" class="hidden" required />
+                            </label>
+                        </div>
+                        <p id="fileNameDisplay" class="mt-2 text-sm text-indigo-600 font-semibold text-center"></p>
+                    </div>
+                </div>
+                <div class="px-6 py-4 flex justify-end gap-3 border-t border-gray-200 bg-gray-50 rounded-b-2xl">
+                    <button type="button" onclick="toggleModal('modalImport')" class="px-5 py-2 text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnProsesImport" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">Proses Import</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH GURU -->
+    <div id="modalTambah" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 flex-shrink-0 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Tambah Guru Baru</h3>
+                <button onclick="toggleModal('modalTambah')" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="formTambahGuru" class="flex flex-col flex-1 overflow-hidden">
+                <div class="p-6 overflow-y-auto flex-1">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">NIP / ID *</label>
+                            <input type="text" id="add_nip" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Status Guru *</label>
+                            <select id="add_status" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non-Aktif">Non-Aktif</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap *</label>
+                            <input type="text" id="add_nama" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Peran *</label>
+                            <select id="add_peran" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="" disabled selected>Pilih Peran...</option>
+                                <option value="admin">admin</option>
+                                <option value="guru kelas">guru kelas</option>
+                                <option value="guru mapel">guru mapel</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Akses Kelas *</label>
+                            <select id="add_akses" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="" disabled selected>Pilih Akses...</option>
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                                <option value="semua">semua</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Kelamin *</label>
+                            <select id="add_jk" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="L">Laki-laki (L)</option>
+                                <option value="P">Perempuan (P)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">No. Telp</label>
+                            <input type="text" id="add_telp" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tempat Lahir</label>
+                            <input type="text" id="add_tempatLahir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal Lahir</label>
+                            <input type="date" id="add_tglLahir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat</label>
+                            <textarea id="add_alamat" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 flex justify-end gap-3 border-t border-gray-200 bg-gray-50 flex-shrink-0 rounded-b-2xl">
+                    <button type="button" onclick="toggleModal('modalTambah')" class="px-5 py-2 text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnSimpanTambah" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT GURU -->
+    <div id="modalEdit" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col max-h-[90vh]">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 flex-shrink-0 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Edit Data Guru</h3>
+                <button onclick="toggleModal('modalEdit')" class="text-gray-400 hover:text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="formEditGuru" class="flex flex-col flex-1 overflow-hidden">
+                <div class="p-6 overflow-y-auto flex-1">
+                    <input type="hidden" id="edit_nip_lama">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">NIP *</label>
+                            <input type="text" id="edit_nip" required readonly class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-gray-500 cursor-not-allowed">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Status Guru *</label>
+                            <select id="edit_status" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="Aktif">Aktif</option>
+                                <option value="Non-Aktif">Non-Aktif</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap *</label>
+                            <input type="text" id="edit_nama" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Peran *</label>
+                            <select id="edit_peran" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="admin">admin</option>
+                                <option value="guru kelas">guru kelas</option>
+                                <option value="guru mapel">guru mapel</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Akses Kelas *</label>
+                            <select id="edit_akses" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                                <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                                <option value="semua">semua</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Jenis Kelamin *</label>
+                            <select id="edit_jk" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                                <option value="L">Laki-laki (L)</option>
+                                <option value="P">Perempuan (P)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">No. Telp</label>
+                            <input type="text" id="edit_telp" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tempat Lahir</label>
+                            <input type="text" id="edit_tempatLahir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal Lahir</label>
+                            <input type="date" id="edit_tglLahir" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat</label>
+                            <textarea id="edit_alamat" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 py-4 flex justify-end gap-3 border-t border-gray-200 bg-gray-50 flex-shrink-0 rounded-b-2xl">
+                    <button type="button" onclick="toggleModal('modalEdit')" class="px-5 py-2 text-gray-600 bg-white border border-gray-300 hover:bg-gray-100 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnSimpanEdit" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Script Logika -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec";
+
+        const user = JSON.parse(localStorage.getItem('lms_user'));
+        if (!user) window.location.href = 'index.html'; 
+        else {
+            document.getElementById('userName').innerText = user.nama;
+            document.getElementById('userRole').innerText = user.role;
+            document.getElementById('userInitial').innerText = user.nama.charAt(0).toUpperCase();
+        }
+        
+        // === SCRIPT SAKTI PENYEMBUNYI MENU UNTUK MURID ===
+        if (user.role === 'murid') {
+            const linksToHide = ['data-sekolah.html', 'data-guru.html', 'data-murid.html', 'jurnal.html', 'laporan.html'];
+            document.querySelectorAll('#sidebar nav a').forEach(link => {
+                if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
+            });
+            document.querySelectorAll('#sidebar nav p').forEach(p => {
+                if (p.innerText.includes('Manajemen') || p.innerText.includes('Laporan')) p.style.display = 'none';
+            });
+            
+            // Hilangkan juga Tombol Aksi Cepat (Isi Jurnal) di Dashboard
+            const btnJurnal = document.querySelector('a[href="jurnal.html"]');
+            if (btnJurnal) btnJurnal.style.display = 'none';
+        }
+
+        document.getElementById('menuBtn').addEventListener('click', () => { document.getElementById('sidebar').classList.toggle('-translate-x-full'); document.getElementById('overlay').classList.toggle('hidden'); });
+        document.getElementById('overlay').addEventListener('click', () => { document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('overlay').classList.add('hidden'); });
+
+        function toggleModal(modalID) {
+            const modal = document.getElementById(modalID);
+            if(modal.classList.contains('hidden')){
+                modal.classList.remove('hidden'); setTimeout(() => modal.children[0].classList.replace('scale-95', 'scale-100'), 10);
+            } else {
+                modal.children[0].classList.replace('scale-100', 'scale-95'); setTimeout(() => modal.classList.add('hidden'), 200);
+            }
+        }
+
+        function logout() { localStorage.removeItem('lms_user'); window.location.href = 'index.html'; }
+        function formatTanggalIndo(tglStr) { if(!tglStr) return "-"; return new Date(tglStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+        // ==========================================
+        // STATE FILTER & SORTING (RAM)
+        // ==========================================
+        let allDataGuru = []; 
+        let currentFilterStatus = 'all';
+        let currentSortCol = '';
+        let currentSortDir = 'asc';
+
+        async function loadDataGuru() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-gray-500"><svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Memuat data dari database...</td></tr>`;
+
+            try {
+                const response = await fetch(`${GAS_URL}?action=getGuru`);
+                const result = await response.json();
+                
+                if (result.status === 'success') {
+                    allDataGuru = result.data; 
+                    renderTable(); 
+                }
+            } catch (error) { tbody.innerHTML = `<tr><td colspan="8" class="text-center py-4 text-red-500">Gagal memuat data. Periksa koneksi jaringan.</td></tr>`; }
+        }
+        window.addEventListener('DOMContentLoaded', loadDataGuru);
+
+        function applyFilter() {
+            currentFilterStatus = document.getElementById('filterStatus').value;
+            renderTable();
+        }
+
+        function sortBy(kolom) {
+            if (currentSortCol === kolom) currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+            else { currentSortCol = kolom; currentSortDir = 'asc'; }
+
+            document.querySelectorAll('th span[id^="icon-"]').forEach(el => {
+                el.innerText = '↕'; el.classList.replace('text-indigo-600', 'text-gray-400'); el.classList.replace('font-bold', 'font-normal');
+            });
+            const activeIcon = document.getElementById(`icon-${kolom}`);
+            if (activeIcon) {
+                activeIcon.innerText = currentSortDir === 'asc' ? '↑' : '↓';
+                activeIcon.classList.replace('text-gray-400', 'text-indigo-600'); activeIcon.classList.replace('font-normal', 'font-bold');
+            }
+            renderTable();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('tableBody');
+            
+            let filteredData = allDataGuru.filter(g => {
+                if (currentFilterStatus === 'all') return true;
+                return g.status === currentFilterStatus;
+            });
+
+            if (currentSortCol) {
+                filteredData.sort((a, b) => {
+                    let valA = a[currentSortCol] ? a[currentSortCol].toString().toLowerCase() : '';
+                    let valB = b[currentSortCol] ? b[currentSortCol].toString().toLowerCase() : '';
+                    if (valA < valB) return currentSortDir === 'asc' ? -1 : 1;
+                    if (valA > valB) return currentSortDir === 'asc' ? 1 : -1;
+                    return 0;
+                });
+            }
+
+            tbody.innerHTML = '';
+            if (filteredData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-6 text-gray-500">Tidak ada data guru.</td></tr>`; return;
+            }
+
+            filteredData.forEach(g => {
+                const tglIndo = formatTanggalIndo(g.tgl_lahir);
+                const alamatAman = g.alamat ? g.alamat.replace(/`/g, '\\`').replace(/\n/g, ' ') : '';
+                const namaAman = g.nama ? g.nama.replace(/'/g, "\\'") : '';
+                const tempatAman = g.tempat_lahir ? g.tempat_lahir.replace(/'/g, "\\'") : '';
+                const peranAman = g.peran ? g.peran.replace(/'/g, "\\'") : '';
+                const aksesAman = g.akses ? g.akses.replace(/'/g, "\\'") : '';
+                const args = `'${g.nip}', '${namaAman}', '${g.jk}', '${tempatAman}', '${g.tgl_lahir || ''}', '${g.telp || ''}', \`${alamatAman}\`, '${g.status}', '${peranAman}', '${aksesAman}'`;
+                
+                let badgeStatus = g.status === 'Aktif' 
+                    ? '<span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md text-xs font-bold">Aktif</span>'
+                    : '<span class="bg-red-100 text-red-700 px-2 py-1 rounded-md text-xs font-bold">Non-Aktif</span>';
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4 whitespace-nowrap"><div class="font-bold text-gray-800">${g.nip}</div></td>
+                        <td class="px-6 py-4 font-medium text-gray-800 whitespace-nowrap">${g.nama}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-600">${g.tempat_lahir || '-'},<br>${tglIndo}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">${g.jk}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-xs text-gray-600"><b>${g.peran || '-'}</b><br>${g.akses || '-'}</td>
+                        <td class="px-6 py-4 text-xs text-gray-600 min-w-[200px]">${g.alamat || '-'}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">${badgeStatus}</td>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">
+                            <button onclick="bukaModalEdit(${args})" class="text-indigo-600 hover:text-indigo-900 mr-3" title="Edit Data">
+                                <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                            </button>
+                            <button onclick="hapusData('${g.nip}', '${namaAman}')" class="text-red-500 hover:text-red-700" title="Hapus Data">
+                                <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // ==========================================
+        // C (CREATE), U (UPDATE), D (DELETE), IMPORT
+        // ==========================================
+        document.getElementById('formTambahGuru').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSimpanTambah');
+            btn.disabled = true; btn.innerHTML = 'Menyimpan...';
+
+            const payload = {
+                nip: document.getElementById('add_nip').value.trim(), 
+                nama_lengkap: document.getElementById('add_nama').value.trim(),
+                jk: document.getElementById('add_jk').value, 
+                no_telp: document.getElementById('add_telp').value.trim(),
+                tempat_lahir: document.getElementById('add_tempatLahir').value.trim(), 
+                tanggal_lahir: document.getElementById('add_tglLahir').value,
+                alamat: document.getElementById('add_alamat').value.trim(), 
+                status: document.getElementById('add_status').value,
+                peran: document.getElementById('add_peran').value.trim().toLowerCase(),
+                akses: document.getElementById('add_akses').value.trim().toLowerCase()
+            };
+
+            try {
+                const res = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ action: 'tambahGuru', payload: payload }) });
+                const result = await res.json();
+                if(result.status === 'success') { alert('Berhasil tersimpan!'); toggleModal('modalTambah'); document.getElementById('formTambahGuru').reset(); loadDataGuru(); } 
+                else alert('Error: ' + result.message);
+            } catch(e) { alert('Terjadi kesalahan jaringan.'); } finally { btn.innerHTML = 'Simpan Data'; btn.disabled = false; }
+        });
+
+        function bukaModalEdit(nip, nama, jk, tempatLahir, tglLahir, telp, alamat, status, peran, akses) {
+            document.getElementById('edit_nip_lama').value = nip; document.getElementById('edit_nip').value = nip;
+            document.getElementById('edit_nama').value = nama; document.getElementById('edit_jk').value = jk;
+            document.getElementById('edit_tempatLahir').value = tempatLahir; document.getElementById('edit_tglLahir').value = tglLahir;
+            document.getElementById('edit_telp').value = telp; document.getElementById('edit_alamat').value = alamat;
+            document.getElementById('edit_status').value = status;
+            document.getElementById('edit_peran').value = (peran || 'guru kelas').toString().trim().toLowerCase(); 
+            document.getElementById('edit_akses').value = (akses || '').toString().trim().toLowerCase();
+            toggleModal('modalEdit');
+        }
+
+        document.getElementById('formEditGuru').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnSimpanEdit');
+            btn.disabled = true; btn.innerHTML = 'Menyimpan...';
+
+            const payload = {
+                nip_lama: document.getElementById('edit_nip_lama').value, 
+                nip: document.getElementById('edit_nip').value.trim(),
+                nama_lengkap: document.getElementById('edit_nama').value.trim(), 
+                jk: document.getElementById('edit_jk').value,
+                no_telp: document.getElementById('edit_telp').value.trim(), 
+                tempat_lahir: document.getElementById('edit_tempatLahir').value.trim(),
+                tanggal_lahir: document.getElementById('edit_tglLahir').value, 
+                alamat: document.getElementById('edit_alamat').value.trim(),
+                status: document.getElementById('edit_status').value,
+                peran: document.getElementById('edit_peran').value.trim().toLowerCase(),
+                akses: document.getElementById('edit_akses').value.trim().toLowerCase()
+            };
+
+            try {
+                const res = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ action: 'editGuru', payload: payload }) });
+                const result = await res.json();
+                if(result.status === 'success') { alert('Data diperbarui!'); toggleModal('modalEdit'); loadDataGuru(); } 
+                else alert('Error: ' + result.message);
+            } catch(e) { alert('Terjadi kesalahan jaringan.'); } finally { btn.innerHTML = 'Simpan Perubahan'; btn.disabled = false; }
+        });
+
+        async function hapusData(nip, nama) {
+            if (confirm(`Yakin ingin menghapus data guru: ${nama} (NIP: ${nip})?\nAkun login juga akan dihapus permanen.`)) {
+                try {
+                    const res = await fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ action: 'hapusGuru', payload: { nip: nip } }) });
+                    const result = await res.json();
+                    if(result.status === 'success') { alert(`Data ${nama} dihapus.`); loadDataGuru(); } 
+                    else alert('Error: ' + result.message);
+                } catch(e) { alert('Kesalahan jaringan.'); }
+            }
+        }
+
+        async function downloadTemplateCSV() {
+    try {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Template Guru');
+
+        // ==========================================
+        // HEADER
+        // ==========================================
+        worksheet.columns = [
+            { header: 'NIP', key: 'nip', width: 20 },
+            { header: 'Nama_Lengkap', key: 'nama', width: 28 },
+            { header: 'Jenis_Kelamin', key: 'jk', width: 16 },
+            { header: 'Tempat_Lahir', key: 'tempat_lahir', width: 20 },
+            { header: 'Tanggal_Lahir', key: 'tanggal_lahir', width: 16 },
+            { header: 'No_Telp', key: 'telp', width: 18 },
+            { header: 'Alamat', key: 'alamat', width: 35 },
+            { header: 'Status_Guru', key: 'status', width: 16 },
+            { header: 'Peran', key: 'peran', width: 18 },
+            { header: 'Akses', key: 'akses', width: 15 }
+        ];
+
+        // ==========================================
+        // CONTOH DATA
+        // ==========================================
+        worksheet.addRow([
+            '198203052009031001',
+            'Agus Setiawan',
+            'L',
+            'Pacitan',
+            '1982-03-05',
+            '08123456789',
+            'Jl. Raya Timur No 5',
+            'Aktif',
+            'admin',
+            'semua'
+        ]);
+
+        // ==========================================
+        // HEADER STYLE
+        // ==========================================
+        const headerRow = worksheet.getRow(1);
+
+        headerRow.eachCell(cell => {
+            cell.font = {
+                bold: true,
+                color: { argb: 'FFFFFFFF' }
+            };
+
+            cell.fill = {
+                type: 'pattern',
+                pattern: 'solid',
+                fgColor: { argb: '4F46E5' }
+            };
+
+            cell.alignment = {
+                vertical: 'middle',
+                horizontal: 'center'
+            };
+
+            cell.border = {
+                top: { style: 'thin' },
+                left: { style: 'thin' },
+                bottom: { style: 'thin' },
+                right: { style: 'thin' }
+            };
+        });
+
+        headerRow.height = 25;
+
+        // ==========================================
+        // DROPDOWN PERAN
+        // I2:I1000
+        // ==========================================
+        for (let row = 2; row <= 1000; row++) {
+
+            worksheet.getCell(`I${row}`).dataValidation = {
+                type: 'list',
+                allowBlank: false,
+                formulae: ['"admin,guru kelas,guru mapel"'],
+                showErrorMessage: true,
+                errorTitle: 'Peran tidak valid',
+                error: 'Silakan pilih peran dari dropdown.',
+                showInputMessage: true,
+                promptTitle: 'Pilih Peran',
+                prompt: 'Pilih salah satu peran yang tersedia.'
+            };
+
+            // ==========================================
+            // DROPDOWN AKSES
+            // J2:J1000
+            // ==========================================
+            worksheet.getCell(`J${row}`).dataValidation = {
+                type: 'list',
+                allowBlank: false,
+                formulae: ['"1,2,3,4,5,6,semua"'],
+                showErrorMessage: true,
+                errorTitle: 'Akses tidak valid',
+                error: 'Silakan pilih akses kelas dari dropdown.',
+                showInputMessage: true,
+                promptTitle: 'Pilih Akses Kelas',
+                prompt: 'Pilih kelas 1-6 atau semua.'
+            };
+
+            // ==========================================
+            // DROPDOWN JENIS KELAMIN
+            // C2:C1000
+            // ==========================================
+            worksheet.getCell(`C${row}`).dataValidation = {
+                type: 'list',
+                allowBlank: false,
+                formulae: ['"L,P"'],
+                showErrorMessage: true,
+                errorTitle: 'Jenis kelamin tidak valid',
+                error: 'Pilih L atau P.'
+            };
+
+            // ==========================================
+            // DROPDOWN STATUS
+            // H2:H1000
+            // ==========================================
+            worksheet.getCell(`H${row}`).dataValidation = {
+                type: 'list',
+                allowBlank: false,
+                formulae: ['"Aktif,Non-Aktif"'],
+                showErrorMessage: true,
+                errorTitle: 'Status tidak valid',
+                error: 'Pilih Aktif atau Non-Aktif.'
+            };
+        }
+
+        // ==========================================
+        // FORMAT KOLOM TANGGAL
+        // ==========================================
+        for (let row = 2; row <= 1000; row++) {
+            worksheet.getCell(`E${row}`).numFmt = 'yyyy-mm-dd';
+        }
+
+        // ==========================================
+        // FREEZE HEADER
+        // ==========================================
+        worksheet.views = [
+            {
+                state: 'frozen',
+                ySplit: 1
+            }
+        ];
+
+        // ==========================================
+        // FILTER
+        // ==========================================
+        worksheet.autoFilter = {
+            from: 'A1',
+            to: 'J1000'
+        };
+
+        // ==========================================
+        // DOWNLOAD
+        // ==========================================
+        const buffer = await workbook.xlsx.writeBuffer();
+
+        const blob = new Blob(
+            [buffer],
+            {
+                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            }
+        );
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Template_Import_Guru.xlsx';
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+
+    } catch (error) {
+        console.error('Gagal membuat template:', error);
+        alert('Gagal membuat template Excel.');
+    }
+}
+
+        document.getElementById('formImportGuru').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnProsesImport'), fileInput = document.getElementById('dropzone-file');
+            if (!fileInput.files.length) return alert('Pilih file CSV atau XLSX dulu!');
+            btn.innerHTML = 'Memproses...'; btn.disabled = true;
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = async function(ev) {
+                try {
+                    const arrayData = [];
+                    const ext = file.name.toLowerCase().split('.').pop();
+
+                    if (ext === 'xlsx') {
+                        const workbook = XLSX.read(ev.target.result, {type:'array'});
+                        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                        const rows = XLSX.utils.sheet_to_json(sheet, {header:1, defval:''});
+                        for (let i=1; i<rows.length; i++) {
+                            const k = rows[i];
+                            if (!String(k[0] || '').trim()) continue;
+                            arrayData.push({
+                                nip:String(k[0]).trim(), nama_lengkap:String(k[1]||'').trim(), jk:String(k[2]||'').trim(),
+                                tempat_lahir:String(k[3]||'').trim(), tanggal_lahir:String(k[4]||'').trim(),
+                                no_telp:String(k[5]||'').trim(), alamat:String(k[6]||'').trim(),
+                                status:String(k[7]||'Aktif').trim(),
+                                peran:String(k[8]||'guru kelas').trim().toLowerCase(),
+                                akses:String(k[9]||'').trim().toLowerCase()
+                            });
+                        }
+                    } else {
+                        const rows = ev.target.result.split(/\r?\n/);
+                        for (let i=1; i<rows.length; i++) {
+                            if (!rows[i].trim()) continue;
+                            const k = rows[i].split(';');
+                            if (k.length >= 8 && k[0].trim()) {
+                                arrayData.push({
+                                    nip:k[0].trim(), nama_lengkap:(k[1]||'').trim(), jk:(k[2]||'').trim(),
+                                    tempat_lahir:(k[3]||'').trim(), tanggal_lahir:(k[4]||'').trim(),
+                                    no_telp:(k[5]||'').trim(), alamat:(k[6]||'').trim(),
+                                    status:(k[7]||'Aktif').trim(),
+                                    peran:(k[8]||'guru kelas').trim().toLowerCase(),
+                                    akses:(k[9]||'').trim().toLowerCase()
+                                });
+                            }
+                        }
+                    }
+
+                    if (!arrayData.length) return alert('Tidak ada data guru yang valid.');
+                    const res = await fetch(GAS_URL, {
+                        method:'POST',
+                        body:JSON.stringify({action:'importGuru', payload:{data_csv:arrayData}})
+                    });
+                    const result = await res.json();
+                    if (result.status === 'success') {
+                        alert(result.message);
+                        toggleModal('modalImport');
+                        document.getElementById('formImportGuru').reset();
+                        document.getElementById('fileNameDisplay').innerText = '';
+                        loadDataGuru();
+                    } else alert('Error: ' + result.message);
+                } catch (err) {
+                    console.error(err);
+                    alert('Format file tidak valid atau gagal membaca file.');
+                } finally {
+                    btn.innerHTML='Proses Import'; btn.disabled=false;
+                }
+            };
+            if (file.name.toLowerCase().endsWith('.xlsx')) reader.readAsArrayBuffer(file);
+            else reader.readAsText(file);
+        });
+    </script>
+
+<script>
+(function(){try{
+ const u=JSON.parse(localStorage.getItem('lms_user')||'null');
+ const role=String((u&&u.role)||'').toLowerCase(), peran=String((u&&u.peran)||'').toLowerCase();
+ if(!u||!(role==='guru'||role==='admin'||peran==='admin')) return;
+ const nav=document.querySelector('#sidebar nav'), materi=nav&&nav.querySelector('a[href="materi.html"]');
+ if(nav&&materi&&!nav.querySelector('[data-menu-nilai]')){
+  const a=document.createElement('a'); a.href='nilai.html'; a.dataset.menuNilai='1';
+  a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors';
+  a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5-1a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Input Nilai';
+  materi.insertAdjacentElement('afterend',a);
+ }
+ if(location.pathname.toLowerCase().endsWith('/dashboard.html')){
+  const group=document.querySelector('#btnIsiJurnal')?.parentElement;
+  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
+ }
+}catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
+</script>
+</body>
+</html>

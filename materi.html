@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi & Tugas - LMS Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: all 0.3s ease; }
+        /* Animasi Tab */
+        .tab-content { display: none; animation: fadeIn 0.3s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Mobile Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-30 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-800 flex items-center gap-3">
+            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            LMS Kelas
+        </div>
+        <nav class="p-4 space-y-1">
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mb-2 mt-2">Utama</p>
+            <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                Dashboard
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Manajemen</p>
+            <a href="data-sekolah.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                Data Sekolah
+            </a>
+            <a href="data-guru.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                Data Guru
+            </a>
+            <a href="data-murid.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                Data Murid
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Akademik</p>
+            <a href="absensi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
+                Absensi
+            </a>
+            <a href="jadwal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                Jadwal Pelajaran
+            </a>
+            <a href="materi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                Materi & Tugas
+            </a>
+            <a href="jurnal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                Jurnal Guru
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Laporan</p>
+            <a href="laporan.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                Rekap & Cetak
+            </a>
+        </nav>
+        <div class="p-4 mt-8 mb-4">
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full py-2.5 bg-red-500/20 text-red-300 hover:bg-red-600 hover:text-white rounded-lg text-sm font-semibold transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                Keluar
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="md:ml-64 flex flex-col min-h-screen">
+        <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="text-xl font-bold text-gray-800 hidden sm:block">Pusat Belajar</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-bold text-gray-800" id="userName">User</div>
+                    <div class="text-xs text-gray-500 capitalize" id="userRole">Role</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg" id="userInitial">U</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b border-gray-200 pb-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">Materi & Tugas</h2>
+                    <p class="text-gray-500 text-sm mt-1">Eksplorasi bahan ajar dan kerjakan tugas yang diberikan.</p>
+                </div>
+                
+                <!-- Filter Data -->
+                <div class="flex gap-2 w-full md:w-auto">
+                    <select id="filterKelas" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 text-sm font-semibold text-gray-700 shadow-sm bg-white flex-1 sm:w-32">
+                        <option value="">Kelas</option>
+                        <option value="1">Kelas 1</option>
+                        <option value="2">Kelas 2</option>
+                        <option value="3">Kelas 3</option>
+                        <option value="4">Kelas 4</option>
+                        <option value="5">Kelas 5</option>
+                        <option value="6">Kelas 6</option>
+                    </select>
+                    <button onclick="loadDataPusatBelajar()" class="px-5 py-2 bg-indigo-600 text-white rounded-lg text-sm font-semibold hover:bg-indigo-700 shadow-sm transition-colors flex items-center gap-2">
+                        Tampilkan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Navigasi -->
+            <div class="flex gap-6 mb-6 px-1">
+                <button onclick="switchTab('tabMateri')" id="btnTabMateri" class="text-indigo-600 border-b-2 border-indigo-600 pb-2 font-bold text-lg transition-colors focus:outline-none">📚 Materi Pelajaran</button>
+                <button onclick="switchTab('tabTugas')" id="btnTabTugas" class="text-gray-500 border-b-2 border-transparent hover:text-indigo-500 pb-2 font-bold text-lg transition-colors focus:outline-none">📝 Tugas Siswa</button>
+            </div>
+
+            <div id="pilihKelasWarning" class="p-12 text-center text-gray-400 bg-white border border-gray-200 rounded-xl shadow-sm">
+                Silakan pilih kelas terlebih dahulu pada menu filter di atas, lalu klik <b>Tampilkan</b>.
+            </div>
+
+            <div id="loadingState" class="hidden p-12 text-center text-gray-500">
+                <svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                Menarik data materi dan tugas dari server...
+            </div>
+
+            <!-- ===================== KONTEN TAB MATERI ===================== -->
+            <div id="tabMateri" class="tab-content active">
+                <div id="areaBtnTambahMateri" class="mb-4 flex justify-end">
+                    <button onclick="toggleModal('modalTambahMateri')" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 shadow-sm transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Tambah Materi
+                    </button>
+                </div>
+                <div id="gridMateri" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+
+            <!-- ===================== KONTEN TAB TUGAS ===================== -->
+            <div id="tabTugas" class="tab-content">
+                <div id="areaBtnTambahTugas" class="mb-4 flex justify-end">
+                    <button onclick="toggleModal('modalTambahTugas')" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-semibold hover:bg-emerald-700 shadow-sm transition-colors flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Tambah Tugas
+                    </button>
+                </div>
+                <div id="gridTugas" class="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL TAMBAH MATERI -->
+    <div id="modalTambahMateri" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Upload Materi Baru</h3>
+                <button onclick="toggleModal('modalTambahMateri')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="formTambahMateri" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label>
+                        <input type="text" id="addMat_Mapel" required placeholder="Contoh: IPA" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Target Kelas *</label>
+                        <select id="addMat_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option>
+                            <option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Materi *</label>
+                    <input type="text" id="addMat_Judul" required placeholder="Contoh: Rantai Makanan" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Link YouTube (Bebas Copas) *</label>
+                    <input type="text" id="addMat_Link" required placeholder="Bisa paste link biasa atau kode <iframe...>" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    <p class="text-xs text-indigo-500 mt-1 font-semibold">Sistem akan otomatis merubah link Anda menjadi format Embed Video.</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi / Instruksi Tambahan</label>
+                    <textarea id="addMat_Deskripsi" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                    <button type="button" onclick="toggleModal('modalTambahMateri')" class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnSimpanMateri" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold shadow-sm">Simpan Materi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH TUGAS (REVISI 24 JAM) -->
+    <div id="modalTambahTugas" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Buat Tugas Baru</h3>
+                <button onclick="toggleModal('modalTambahTugas')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="formTambahTugas" class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label>
+                        <input type="text" id="addTgs_Mapel" required placeholder="Contoh: Matematika" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Target Kelas *</label>
+                        <select id="addTgs_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                            <option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option>
+                            <option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Judul Tugas *</label>
+                    <input type="text" id="addTgs_Judul" required placeholder="Contoh: Latihan Soal Pecahan" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Batas Tanggal (Deadline) *</label>
+                        <input type="date" id="addTgs_Tanggal" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Batas Waktu (Jam) *</label>
+                        <input type="text" id="addTgs_Waktu" placeholder="23:59" maxlength="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 font-mono text-center">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Instruksi Tugas *</label>
+                    <textarea id="addTgs_Deskripsi" rows="3" required placeholder="Jelaskan apa yang harus dikerjakan siswa..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-100">
+                    <button type="button" onclick="toggleModal('modalTambahTugas')" class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnSimpanTugas" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold shadow-sm">Publish Tugas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT MATERI -->
+    <div id="modalEditMateri" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Edit Materi</h3>
+                <button onclick="toggleModal('modalEditMateri')" class="text-gray-400 hover:text-gray-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            </div>
+            <form id="formEditMateri" class="p-6 space-y-4">
+                <input type="hidden" id="editMat_Id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label><input type="text" id="editMat_Mapel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
+                    <div><label class="block text-sm font-semibold text-gray-700 mb-1">Target Kelas *</label><select id="editMat_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"><option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option><option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option></select></div>
+                </div>
+                <div><label class="block text-sm font-semibold text-gray-700 mb-1">Judul Materi *</label><input type="text" id="editMat_Judul" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
+                <div><label class="block text-sm font-semibold text-gray-700 mb-1">Link YouTube *</label><input type="text" id="editMat_Link" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
+                <div><label class="block text-sm font-semibold text-gray-700 mb-1">Deskripsi</label><textarea id="editMat_Deskripsi" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea></div>
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-100"><button type="button" onclick="toggleModal('modalEditMateri')" class="px-5 py-2 text-gray-600 bg-gray-100 rounded-lg font-semibold">Batal</button><button type="submit" id="btnEditMateri" class="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold">Simpan Perubahan</button></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT TUGAS -->
+    <div id="modalEditTugas" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-gray-800">Edit Tugas</h3>
+                <button onclick="toggleModal('modalEditTugas')" class="text-gray-400 hover:text-gray-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            </div>
+            <form id="formEditTugas" class="p-6 space-y-4">
+                <input type="hidden" id="editTgs_Id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-semibold text-gray-700 mb-1">Mata Pelajaran *</label><input type="text" id="editTgs_Mapel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
+                    <div><label class="block text-sm font-semibold text-gray-700 mb-1">Target Kelas *</label><select id="editTgs_Kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"><option value="1">Kelas 1</option><option value="2">Kelas 2</option><option value="3">Kelas 3</option><option value="4">Kelas 4</option><option value="5">Kelas 5</option><option value="6">Kelas 6</option></select></div>
+                </div>
+                <div><label class="block text-sm font-semibold text-gray-700 mb-1">Judul Tugas *</label><input type="text" id="editTgs_Judul" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
+                <div class="grid grid-cols-2 gap-4"><div><label class="block text-sm font-semibold text-gray-700 mb-1">Deadline *</label><input type="date" id="editTgs_Tanggal" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div><div><label class="block text-sm font-semibold text-gray-700 mb-1">Jam *</label><input type="text" id="editTgs_Waktu" maxlength="5" required class="w-full px-4 py-2 border border-gray-300 rounded-lg font-mono text-center"></div></div>
+                <div><label class="block text-sm font-semibold text-gray-700 mb-1">Instruksi *</label><textarea id="editTgs_Deskripsi" rows="3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg"></textarea></div>
+                <div class="flex justify-end gap-3 pt-4 border-t border-gray-100"><button type="button" onclick="toggleModal('modalEditTugas')" class="px-5 py-2 text-gray-600 bg-gray-100 rounded-lg font-semibold">Batal</button><button type="submit" id="btnEditTugas" class="px-5 py-2 bg-indigo-600 text-white rounded-lg font-semibold">Simpan Perubahan</button></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL KUMPULKAN TUGAS -->
+    <div id="modalKumpulTugas" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-xl transform scale-95 transition-transform duration-300 flex flex-col">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-indigo-50 rounded-t-2xl">
+                <h3 class="text-lg font-bold text-indigo-900">Kumpulkan Jawaban</h3>
+                <button onclick="toggleModal('modalKumpulTugas')" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <form id="formKumpulTugas" class="p-6 space-y-4">
+                <input type="hidden" id="kumpul_id_tugas">
+                <div class="p-3 bg-blue-50 border border-blue-100 rounded-lg mb-4">
+                    <p class="text-xs text-blue-800 font-semibold mb-1">Mengumpulkan Untuk:</p>
+                    <p id="kumpul_judul_tugas" class="text-sm font-bold text-blue-900">Judul Tugas</p>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Link File Jawaban Anda *</label>
+                    <input type="url" id="kumpul_link" required placeholder="https://docs.google.com/..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <p class="text-xs text-gray-500 mt-2 leading-relaxed">Silakan upload jawaban ke Google Drive Anda, ubah akses sharing menjadi "Siapa saja yang memiliki link", lalu tempel link-nya di sini.</p>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-4 mt-4 border-t border-gray-100">
+                    <button type="button" onclick="toggleModal('modalKumpulTugas')" class="px-5 py-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg font-semibold">Batal</button>
+                    <button type="submit" id="btnKirimTugas" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold shadow-sm">Kirim Jawaban</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec";
+        const user = JSON.parse(localStorage.getItem('lms_user'));
+
+        if (!user) {
+            window.location.href = 'index.html';
+        }
+
+        const role = (user?.role || '').toLowerCase().trim();
+        const peran = (user?.peran || '').toLowerCase().trim();
+        const aksesRaw = (user?.akses || '').toString().trim();
+        const isAdmin = role === 'admin' || peran === 'admin';
+        const isGuruMapel = role === 'guru' && peran === 'guru mapel';
+        const isGuruKelas = role === 'guru' && peran === 'guru kelas';
+        const isMurid = role === 'murid';
+        const canManage = isAdmin || isGuruMapel || isGuruKelas;
+
+        function parseAksesKelas(raw) {
+            if (!raw) return [];
+            return raw.split(/[,;|\s]+/).map(x => x.trim()).filter(x => /^[1-6]$/.test(x));
+        }
+        const aksesKelas = parseAksesKelas(aksesRaw);
+        const kelasUser = isMurid ? ((user.kelas || aksesKelas[0] || '').toString().trim()) : aksesKelas[0] || '';
+
+        document.getElementById('userName').innerText = user.nama || 'User';
+        document.getElementById('userRole').innerText = user.role || 'Role';
+        document.getElementById('userInitial').innerText = (user.nama || 'U').charAt(0).toUpperCase();
+
+        // Sidebar murid tetap dibatasi seperti versi lama.
+        if (isMurid) {
+            const linksToHide = ['data-sekolah.html','data-guru.html','data-murid.html','jurnal.html','laporan.html'];
+            document.querySelectorAll('#sidebar nav a').forEach(link => {
+                if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
+            });
+            document.querySelectorAll('#sidebar nav p').forEach(p => {
+                if (p.innerText.includes('Manajemen') || p.innerText.includes('Laporan')) p.style.display = 'none';
+            });
+        }
+
+        function kelasDiizinkan(kelas) {
+            kelas = (kelas || '').toString().trim();
+            if (isAdmin || isGuruMapel) return /^[1-6]$/.test(kelas);
+            return aksesKelas.includes(kelas) || (isMurid && kelas === kelasUser);
+        }
+
+        function setupAksesUI() {
+            const filter = document.getElementById('filterKelas');
+            const addMat = document.getElementById('addMat_Kelas');
+            const addTgs = document.getElementById('addTgs_Kelas');
+            const editMat = document.getElementById('editMat_Kelas');
+            const editTgs = document.getElementById('editTgs_Kelas');
+
+            if (isMurid || isGuruKelas) {
+                const kelas = isMurid ? kelasUser : (aksesKelas[0] || '');
+                [filter, addMat, addTgs, editMat, editTgs].forEach(el => {
+                    if (!el) return;
+                    el.value = kelas;
+                    el.disabled = true;
+                    el.classList.add('bg-gray-200','cursor-not-allowed','text-gray-600');
+                });
+            }
+
+            if (isMurid) {
+                document.getElementById('areaBtnTambahMateri').style.display = 'none';
+                document.getElementById('areaBtnTambahTugas').style.display = 'none';
+            } else if (canManage) {
+                document.getElementById('areaBtnTambahMateri').classList.remove('hidden');
+            }
+
+            if (isMurid || isGuruKelas) {
+                setTimeout(loadDataPusatBelajar, 100);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', setupAksesUI);
+
+        document.getElementById('menuBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('overlay').classList.toggle('hidden');
+        });
+        document.getElementById('overlay').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.add('-translate-x-full');
+            document.getElementById('overlay').classList.add('hidden');
+        });
+        function logout(){ localStorage.removeItem('lms_user'); window.location.href='index.html'; }
+
+        function toggleModal(id) {
+            const modal=document.getElementById(id); if(!modal) return;
+            if(modal.classList.contains('hidden')){ modal.classList.remove('hidden'); setTimeout(()=>modal.children[0].classList.replace('scale-95','scale-100'),10); }
+            else { modal.children[0].classList.replace('scale-100','scale-95'); setTimeout(()=>modal.classList.add('hidden'),200); }
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            const bm=document.getElementById('btnTabMateri'), bt=document.getElementById('btnTabTugas');
+            const am=document.getElementById('areaBtnTambahMateri'), at=document.getElementById('areaBtnTambahTugas');
+            const active="text-indigo-600 border-b-2 border-indigo-600 pb-2 font-bold text-lg transition-colors focus:outline-none";
+            const idle="text-gray-500 border-b-2 border-transparent hover:text-indigo-500 pb-2 font-bold text-lg transition-colors focus:outline-none";
+            if(tabId==='tabMateri'){ bm.className=active; bt.className=idle; if(canManage){am.classList.remove('hidden');at.classList.add('hidden');} }
+            else { bt.className=active; bm.className=idle; if(canManage){at.classList.remove('hidden');am.classList.add('hidden');} }
+        }
+
+        function formatWaktuAman(waktu){
+            if(!waktu) return '-';
+            if(waktu instanceof Date) return `${String(waktu.getHours()).padStart(2,'0')}:${String(waktu.getMinutes()).padStart(2,'0')}`;
+            const s=waktu.toString();
+            if(s.includes('1899')||s.includes('T')){ const d=new Date(s); if(!isNaN(d)) return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`; }
+            const m=s.match(/(\d{1,2}):(\d{2})/); return m ? `${m[1].padStart(2,'0')}:${m[2]}` : s;
+        }
+        function formatTanggalIndo(tgl){ if(!tgl) return '-'; const d=new Date(tgl); return isNaN(d)?tgl:d.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}); }
+        function esc(v){ return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+        function safeJson(v){ return JSON.stringify(v).replace(/'/g, "\\'"); }
+
+        async function loadDataPusatBelajar(){
+            const kelas=document.getElementById('filterKelas').value;
+            if(!kelas){
+                document.getElementById('pilihKelasWarning').classList.remove('hidden');
+                document.getElementById('gridMateri').innerHTML=''; document.getElementById('gridTugas').innerHTML=''; return;
+            }
+            if(!kelasDiizinkan(kelas)){ alert('Anda tidak memiliki akses ke kelas tersebut.'); return; }
+            document.getElementById('pilihKelasWarning').classList.add('hidden');
+            document.getElementById('loadingState').classList.remove('hidden');
+            try{
+                const response=await fetch(`${GAS_URL}?action=getPusatBelajar&kelas=${encodeURIComponent(kelas)}&username=${encodeURIComponent(user.username||'')}`);
+                const result=await response.json();
+                if(result.status!=='success') throw new Error(result.message||'Gagal mengambil data');
+                renderMateri(result.data.materi||[]); renderTugas(result.data.tugas||[]);
+            }catch(e){
+                document.getElementById('gridMateri').innerHTML=`<p class="text-red-500 text-center col-span-full">${esc(e.message||'Gagal memuat data.')}</p>`;
+                document.getElementById('gridTugas').innerHTML='';
+            }finally{ document.getElementById('loadingState').classList.add('hidden'); }
+        }
+
+        function renderMateri(items){
+            const grid=document.getElementById('gridMateri'); grid.innerHTML='';
+            if(!items.length){grid.innerHTML='<p class="text-gray-400 italic text-center w-full col-span-full">Belum ada materi untuk kelas ini.</p>';return;}
+            items.forEach(m=>{
+                let actions='';
+                if(canManage && kelasDiizinkan(m.kelas)) actions=`<div class="absolute top-2 right-2 flex gap-1 z-10"><button onclick='bukaEditMateri(${safeJson(m)})' class="bg-white/90 p-1.5 rounded-md text-indigo-600 hover:bg-indigo-50 shadow" title="Edit"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h-1a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-1m-1.5-11.5a2.121 2.121 0 113 3L13 14H10v-3l8.5-8.5z"></path></svg></button><button onclick="hapusMateri('${esc(m.id)}')" class="bg-white/90 p-1.5 rounded-md text-red-500 hover:bg-red-50 shadow" title="Hapus"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button></div>`;
+                const link=esc(m.link||'');
+                grid.innerHTML+=`<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow relative">${actions}<div class="aspect-video bg-gray-100 border-b border-gray-200 relative"><iframe class="absolute top-0 left-0 w-full h-full" src="${link}" title="Video Materi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="p-5"><div class="flex justify-between items-start mb-2"><span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded border border-indigo-100">${esc(m.mapel)}</span><span class="text-xs text-gray-400">${formatTanggalIndo(m.tanggal)}</span></div><h3 class="font-bold text-gray-800 text-lg mb-2 leading-tight">${esc(m.judul)}</h3><p class="text-sm text-gray-600 line-clamp-3">${esc(m.deskripsi)}</p></div></div>`;
+            });
+        }
+
+        function renderTugas(items){
+            const grid=document.getElementById('gridTugas'); grid.innerHTML='';
+            if(!items.length){grid.innerHTML='<p class="text-gray-400 italic text-center w-full col-span-full">Belum ada tugas untuk kelas ini.</p>';return;}
+            items.forEach(t=>{
+                let actionArea='';
+                if(isMurid){ actionArea=t.status_kumpul==='Sudah'?`<span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-sm font-bold rounded-lg">✓ Terkumpul (Nilai: ${esc(t.nilai||'-')})</span>`:`<button onclick='bukaModalKumpul(${safeJson(t.id)},${safeJson(t.judul)})' class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-semibold shadow-sm">Kumpulkan Tugas</button>`; }
+                else if(canManage && kelasDiizinkan(t.kelas)) actionArea=`<div class="flex gap-2"><button onclick='bukaEditTugas(${safeJson(t)})' class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 border border-indigo-200 bg-indigo-50 px-3 py-1.5 rounded-lg">Edit</button><button onclick="hapusTugas('${esc(t.id)}')" class="text-sm font-semibold text-red-500 hover:text-red-700 border border-red-200 bg-red-50 px-3 py-1.5 rounded-lg">Hapus</button></div>`;
+                const cleanDate=(t.batas_tgl||'').toString().includes('T')?t.batas_tgl.split('T')[0]:t.batas_tgl;
+                const cleanTime=formatWaktuAman(t.batas_jam); const deadlineDate=new Date(`${cleanDate}T${cleanTime}:00`); const isLate=!isNaN(deadlineDate)&&new Date()>deadlineDate;
+                const badge=isLate?`<span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded border border-red-100">⏰ Terlambat</span>`:`<span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded border border-amber-100">⏰ ${formatTanggalIndo(cleanDate)} • ${esc(cleanTime)} WIB</span>`;
+                const pembuat=t.pembuat?`<div class="text-xs text-gray-500 mb-3">Dibuat oleh: <b>${esc(t.pembuat)}</b></div>`:'';
+                grid.innerHTML+=`<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 flex flex-col justify-between hover:border-indigo-200 transition-colors"><div><div class="flex justify-between items-start mb-3"><span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded border border-indigo-100">${esc(t.mapel)}</span>${badge}</div><h3 class="font-bold text-gray-800 text-lg mb-2 leading-tight">${esc(t.judul)}</h3>${pembuat}<p class="text-sm text-gray-600 mb-4 whitespace-pre-wrap">${esc(t.deskripsi)}</p></div><div class="flex justify-end pt-4 border-t border-gray-100 mt-2">${actionArea}</div></div>`;
+            });
+        }
+
+        function ekstrakLinkEmbedYouTube(urlRaw){
+            if(!urlRaw)return '';
+            if(urlRaw.includes('<iframe')){const m=urlRaw.match(/src=["']([^"']+)["']/i);if(m)return m[1];}
+            const m=urlRaw.match(/^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/);
+            return m&&m[2]&&m[2].length===11?`https://www.youtube-nocookie.com/embed/${m[2]}`:urlRaw;
+        }
+        function setKelasOptions(select, selected=''){
+            if(!select)return;
+            if(isAdmin||isGuruMapel){select.innerHTML='<option value="">Pilih Kelas</option>'+[1,2,3,4,5,6].map(k=>`<option value="${k}">Kelas ${k}</option>`).join('');}
+            else { const ks=isMurid?[kelasUser]:aksesKelas; select.innerHTML=ks.map(k=>`<option value="${k}">Kelas ${k}</option>`).join(''); }
+            if(selected) select.value=selected;
+            if(isMurid||isGuruKelas){select.disabled=true;select.classList.add('bg-gray-200','cursor-not-allowed','text-gray-600');}
+        }
+
+        // CREATE MATERI
+        document.getElementById('formTambahMateri').addEventListener('submit',async e=>{
+            e.preventDefault(); if(!canManage)return alert('Anda tidak memiliki hak untuk menambah materi.');
+            const kelas=document.getElementById('addMat_Kelas').value; if(!kelasDiizinkan(kelas))return alert('Kelas tersebut di luar akses Anda.');
+            const btn=document.getElementById('btnSimpanMateri');btn.disabled=true;btn.innerHTML='Menyimpan...';
+            try{const payload={username:user.username,mapel:document.getElementById('addMat_Mapel').value.trim(),kelas,judul:document.getElementById('addMat_Judul').value.trim(),link:ekstrakLinkEmbedYouTube(document.getElementById('addMat_Link').value.trim()),deskripsi:document.getElementById('addMat_Deskripsi').value.trim()};const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'tambahMateri',payload})});const x=await r.json();if(x.status==='success'){alert(x.message);toggleModal('modalTambahMateri');document.getElementById('formTambahMateri').reset();setupAksesUI();loadDataPusatBelajar();}else alert('Gagal: '+x.message);}catch(err){alert('Terjadi kesalahan koneksi.')}finally{btn.disabled=false;btn.innerHTML='Simpan Materi';}
+        });
+
+        // CREATE TUGAS
+        document.getElementById('formTambahTugas').addEventListener('submit',async e=>{
+            e.preventDefault(); if(!canManage)return alert('Anda tidak memiliki hak untuk menambah tugas.');
+            const kelas=document.getElementById('addTgs_Kelas').value; if(!kelasDiizinkan(kelas))return alert('Kelas tersebut di luar akses Anda.');
+            const jam=document.getElementById('addTgs_Waktu').value.trim();if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(jam))return alert('Format jam harus HH:MM, contoh 23:59.');
+            const btn=document.getElementById('btnSimpanTugas');btn.disabled=true;btn.innerHTML='Menyimpan...';
+            try{const payload={username:user.username,mapel:document.getElementById('addTgs_Mapel').value.trim(),kelas,judul:document.getElementById('addTgs_Judul').value.trim(),tgl:document.getElementById('addTgs_Tanggal').value,jam,deskripsi:document.getElementById('addTgs_Deskripsi').value.trim()};const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'tambahTugas',payload})});const x=await r.json();if(x.status==='success'){alert(x.message);toggleModal('modalTambahTugas');document.getElementById('formTambahTugas').reset();setupAksesUI();loadDataPusatBelajar();}else alert('Gagal: '+x.message);}catch(err){alert('Terjadi kesalahan koneksi.')}finally{btn.disabled=false;btn.innerHTML='Publish Tugas';}
+        });
+
+        function bukaEditMateri(m){ if(!canManage||!kelasDiizinkan(m.kelas))return alert('Anda tidak memiliki akses mengedit materi ini.');document.getElementById('editMat_Id').value=m.id;document.getElementById('editMat_Mapel').value=m.mapel||'';document.getElementById('editMat_Kelas').value=m.kelas||'';document.getElementById('editMat_Judul').value=m.judul||'';document.getElementById('editMat_Link').value=m.link||'';document.getElementById('editMat_Deskripsi').value=m.deskripsi||'';setKelasOptions(document.getElementById('editMat_Kelas'),m.kelas);toggleModal('modalEditMateri'); }
+        function bukaEditTugas(t){ if(!canManage||!kelasDiizinkan(t.kelas))return alert('Anda tidak memiliki akses mengedit tugas ini.');document.getElementById('editTgs_Id').value=t.id;document.getElementById('editTgs_Mapel').value=t.mapel||'';document.getElementById('editTgs_Kelas').value=t.kelas||'';document.getElementById('editTgs_Judul').value=t.judul||'';document.getElementById('editTgs_Tanggal').value=(t.batas_tgl||'').toString().split('T')[0];document.getElementById('editTgs_Waktu').value=formatWaktuAman(t.batas_jam);document.getElementById('editTgs_Deskripsi').value=t.deskripsi||'';setKelasOptions(document.getElementById('editTgs_Kelas'),t.kelas);toggleModal('modalEditTugas'); }
+
+        document.getElementById('formEditMateri').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btnEditMateri');btn.disabled=true;btn.innerHTML='Menyimpan...';try{const payload={username:user.username,id:document.getElementById('editMat_Id').value,mapel:document.getElementById('editMat_Mapel').value.trim(),kelas:document.getElementById('editMat_Kelas').value,judul:document.getElementById('editMat_Judul').value.trim(),link:ekstrakLinkEmbedYouTube(document.getElementById('editMat_Link').value.trim()),deskripsi:document.getElementById('editMat_Deskripsi').value.trim()};const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'editMateri',payload})});const x=await r.json();if(x.status==='success'){alert(x.message);toggleModal('modalEditMateri');loadDataPusatBelajar();}else alert('Gagal: '+x.message);}catch(err){alert('Terjadi kesalahan koneksi.')}finally{btn.disabled=false;btn.innerHTML='Simpan Perubahan';}});
+        document.getElementById('formEditTugas').addEventListener('submit',async e=>{e.preventDefault();const jam=document.getElementById('editTgs_Waktu').value.trim();if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(jam))return alert('Format jam harus HH:MM.');const btn=document.getElementById('btnEditTugas');btn.disabled=true;btn.innerHTML='Menyimpan...';try{const payload={username:user.username,id:document.getElementById('editTgs_Id').value,mapel:document.getElementById('editTgs_Mapel').value.trim(),kelas:document.getElementById('editTgs_Kelas').value,judul:document.getElementById('editTgs_Judul').value.trim(),tgl:document.getElementById('editTgs_Tanggal').value,jam,deskripsi:document.getElementById('editTgs_Deskripsi').value.trim()};const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'editTugas',payload})});const x=await r.json();if(x.status==='success'){alert(x.message);toggleModal('modalEditTugas');loadDataPusatBelajar();}else alert('Gagal: '+x.message);}catch(err){alert('Terjadi kesalahan koneksi.')}finally{btn.disabled=false;btn.innerHTML='Simpan Perubahan';}});
+
+        async function hapusMateri(id){if(!canManage)return alert('Tidak memiliki akses.');if(!confirm('Hapus materi ini?'))return;try{const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'hapusMateri',payload:{username:user.username,id}})});const x=await r.json();if(x.status==='success')loadDataPusatBelajar();else alert('Gagal: '+x.message);}catch(e){alert('Gagal menghapus.');}}
+        async function hapusTugas(id){if(!canManage)return alert('Tidak memiliki akses.');if(!confirm('Hapus tugas ini? Data pengumpulan siswa tetap tersimpan.'))return;try{const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'hapusTugas',payload:{username:user.username,id}})});const x=await r.json();if(x.status==='success')loadDataPusatBelajar();else alert('Gagal: '+x.message);}catch(e){alert('Gagal menghapus.');}}
+
+        function bukaModalKumpul(idTugas,judulTugas){document.getElementById('kumpul_id_tugas').value=idTugas;document.getElementById('kumpul_judul_tugas').innerText=judulTugas;toggleModal('modalKumpulTugas');}
+        document.getElementById('formKumpulTugas').addEventListener('submit',async e=>{e.preventDefault();if(!isMurid)return;const btn=document.getElementById('btnKirimTugas');btn.disabled=true;btn.innerHTML='Mengirim...';try{const payload={username:user.username,id_tugas:document.getElementById('kumpul_id_tugas').value,nis:user.username,link_jawaban:document.getElementById('kumpul_link').value.trim()};const r=await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'kumpulTugas',payload})});const x=await r.json();if(x.status==='success'){alert(x.message);toggleModal('modalKumpulTugas');document.getElementById('formKumpulTugas').reset();loadDataPusatBelajar();}else alert('Gagal: '+x.message);}catch(e){alert('Terjadi kesalahan koneksi.')}finally{btn.disabled=false;btn.innerHTML='Kirim Jawaban';}});
+
+        document.getElementById('addTgs_Waktu').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+':'+v.slice(2);e.target.value=v;});
+        document.getElementById('editTgs_Waktu').addEventListener('input',e=>{let v=e.target.value.replace(/\D/g,'').slice(0,4);if(v.length>2)v=v.slice(0,2)+':'+v.slice(2);e.target.value=v;});
+        setKelasOptions(document.getElementById('addMat_Kelas'));setKelasOptions(document.getElementById('addTgs_Kelas'));setKelasOptions(document.getElementById('editMat_Kelas'));setKelasOptions(document.getElementById('editTgs_Kelas'));
+    </script>
+
+<script>
+(function(){try{
+ const u=JSON.parse(localStorage.getItem('lms_user')||'null');
+ const role=String((u&&u.role)||'').toLowerCase(), peran=String((u&&u.peran)||'').toLowerCase();
+ if(!u||!(role==='guru'||role==='admin'||peran==='admin')) return;
+ const nav=document.querySelector('#sidebar nav'), materi=nav&&nav.querySelector('a[href="materi.html"]');
+ if(nav&&materi&&!nav.querySelector('[data-menu-nilai]')){
+  const a=document.createElement('a'); a.href='nilai.html'; a.dataset.menuNilai='1';
+  a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors';
+  a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5-1a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Input Nilai';
+  materi.insertAdjacentElement('afterend',a);
+ }
+ if(location.pathname.toLowerCase().endsWith('/dashboard.html')){
+  const group=document.querySelector('#btnIsiJurnal')?.parentElement;
+  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
+ }
+}catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
+</script>
+</body>
+</html>

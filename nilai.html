@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Nilai - LMS Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sidebar-transition { transition: all 0.3s ease; }
+    </style>
+<style>
+.sidebar-transition{transition:all .3s ease}
+@media print{body{background:#fff!important;color:#000!important}#sidebar,#overlay,header,#main-ui,.mb-6.flex.flex-col,#notice,#printActions{display:none!important}}
+</style></head>
+<body class="bg-gray-50 font-sans">
+
+    <!-- Mobile Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-20 md:hidden"></div>
+
+    <!-- Sidebar (Konsisten) -->
+    <div id="sidebar" class="sidebar-transition fixed inset-y-0 left-0 w-64 bg-indigo-900 text-white z-30 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+        <div class="p-6 text-2xl font-bold border-b border-indigo-800 flex items-center gap-3">
+            <svg class="w-8 h-8 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+            LMS Kelas
+        </div>
+        <nav class="p-4 space-y-1">
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mb-2 mt-2">Utama</p>
+            <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg> Dashboard
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Manajemen</p>
+            <a href="data-sekolah.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg> Data Sekolah
+            </a>
+            <a href="data-guru.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> Data Guru
+            </a>
+            <a href="data-murid.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Data Murid
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Akademik</p>
+            <a href="absensi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg> Absensi
+            </a>
+            <a href="jadwal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Jadwal Pelajaran
+            </a>
+            <a href="materi.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg> Materi & Tugas
+            </a>
+            <a href="jurnal.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg> Jurnal Guru
+            </a>
+            <p class="text-xs text-indigo-400 uppercase font-semibold px-2 mt-6 mb-2">Laporan</p>
+            <a href="laporan.html" class="flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Rekap & Cetak
+            </a>
+        </nav>
+        <div class="p-4 mt-8 mb-4">
+            <button onclick="logout()" class="flex items-center justify-center gap-2 w-full py-2.5 bg-red-500/20 text-red-300 hover:bg-red-600 hover:text-white rounded-lg text-sm font-semibold transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg> Keluar
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="md:ml-64 flex flex-col min-h-screen">
+        <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center z-10">
+            <div class="flex items-center gap-4">
+                <button id="menuBtn" class="md:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div class="text-xl font-bold text-gray-800 hidden sm:block">Input Nilai</div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <div class="text-sm font-bold text-gray-800" id="userName">User</div>
+                    <div class="text-xs text-gray-500 capitalize" id="userRole">Role</div>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg" id="userInitial">U</div>
+            </div>
+        </header>
+
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+<div id="notice" role="status" aria-live="polite" class="hidden fixed top-20 right-4 z-50 max-w-md rounded-xl px-5 py-4 shadow-lg"></div>
+<div class="mb-6"><h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Input Nilai</h1><p class="mt-1 text-sm text-gray-500">Isi nilai siswa per kelas dan penilaian.</p></div>
+<section>
+<div class="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-6 mb-6"><div class="flex items-center justify-between mb-4"><div><h2 class="text-lg font-bold text-gray-800">Informasi Penilaian</h2><p class="text-sm text-gray-500 mt-1">Pilih kelas, lalu lengkapi detail tugas atau materi yang dinilai.</p></div></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+<label class="text-sm font-semibold text-gray-700">Kelas<select id="kelas" class="mt-1 w-full rounded-lg border border-gray-300 bg-white p-3"></select></label>
+<label class="text-sm font-semibold text-gray-700">Tanggal<input id="tanggal" type="date" class="mt-1 w-full rounded-lg border border-gray-300 p-3"></label>
+<label class="text-sm font-semibold text-gray-700">Mata pelajaran<input id="mapel" maxlength="80" placeholder="Contoh: Matematika" class="mt-1 w-full rounded-lg border border-gray-300 p-3"></label>
+<label class="text-sm font-semibold text-gray-700">Materi yang dinilai<input id="materi" maxlength="120" placeholder="Contoh: Pecahan" class="mt-1 w-full rounded-lg border border-gray-300 p-3"></label>
+<label class="text-sm font-semibold text-gray-700">Jenis nilai<select id="jenis" class="mt-1 w-full rounded-lg border border-gray-300 bg-white p-3"><option>Tugas</option><option>Ulangan Harian</option><option>Proyek</option><option>Praktik</option><option>PTS</option><option>PAS</option><option>Lainnya</option></select></label>
+<label class="text-sm font-semibold text-gray-700">Penilaian tersimpan<select id="riwayat" class="mt-1 w-full rounded-lg border border-gray-300 bg-white p-3"><option value="">Penilaian baru</option></select></label>
+</div><div class="mt-5 flex flex-wrap gap-3"><button id="btnLoad" class="inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 font-semibold transition-colors"><span class="btn-label">Tampilkan daftar siswa</span></button><button id="btnClear" class="rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-3 font-semibold transition-colors">Penilaian baru</button></div><p class="mt-3 text-sm text-gray-500">Nilai menggunakan skala 0–100. Kosongkan nilai jika belum tersedia.</p><p id="loadStatus" role="status" aria-live="polite" class="mt-3 rounded-lg bg-gray-50 px-4 py-3 text-sm text-gray-600">Pilih kelas dan tekan “Tampilkan daftar siswa” untuk memuat daftar.</p></div>
+<div id="gradePanel" class="hidden bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden"><div class="p-5 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"><div><h2 class="text-lg font-bold text-gray-800">Daftar Siswa</h2><p id="gradeSubtitle" class="text-sm text-gray-500 mt-1"></p></div><button id="btnSave" class="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-3 font-bold transition-colors"><span class="btn-label">Simpan Nilai</span></button></div><div class="overflow-x-auto"><table class="w-full text-left text-sm text-gray-600"><thead class="bg-gray-100 text-gray-700 font-semibold border-b"><tr><th class="p-3 w-16">No.</th><th class="p-3">Nama Siswa</th><th class="p-3 w-40">Nilai (0–100)</th><th class="p-3 min-w-56">Catatan (opsional)</th></tr></thead><tbody id="studentRows"></tbody></table></div><div class="p-4 flex justify-end border-t"><button id="btnDelete" class="hidden inline-flex items-center justify-center gap-2 text-red-700 rounded-lg border border-red-200 px-4 py-2 hover:bg-red-50 font-semibold"><span class="btn-label">Hapus Penilaian</span></button></div></div>
+</section>
+</main></div>
+<script>
+const GAS_URL="https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec";
+const user=JSON.parse(localStorage.getItem('lms_user')||'null');if(!user)location.href='index.html';
+const $=id=>document.getElementById(id);let permission=null,roster=[],currentId='';
+$('userName').textContent=user?.nama||'User';$('userRole').textContent=user?.peran||user?.role||'Role';$('userInitial').textContent=(user?.nama||'U').charAt(0).toUpperCase();
+function showNotice(message,type='success'){const n=$('notice');n.textContent=message;n.className='fixed top-20 right-4 z-50 max-w-md rounded-xl px-5 py-4 shadow-lg '+(type==='error'?'bg-red-600 text-white':'bg-emerald-600 text-white');n.classList.remove('hidden');clearTimeout(showNotice.timer);showNotice.timer=setTimeout(()=>n.classList.add('hidden'),4500);}
+function buttonBusy(button,busy,label){button.disabled=busy;button.classList.toggle('opacity-70',busy);button.classList.toggle('cursor-wait',busy);button.querySelector('.btn-label').textContent=busy?label:button.dataset.originalLabel;}
+['btnLoad','btnSave','btnDelete'].forEach(id=>{const b=$(id);b.dataset.originalLabel=b.querySelector('.btn-label').textContent;});
+async function get(action,params={}){const r=await fetch(GAS_URL+'?'+new URLSearchParams({action,username:user.username,...params}));return r.json();}
+async function post(action,payload){const r=await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,payload})});return r.json();}
+async function init(){try{const r=await get('getNilaiAccess');if(r.status!=='success')throw Error(r.message);permission=r.data;if(!['admin','guru'].includes(String(permission.role).toLowerCase()))throw Error('Halaman ini hanya untuk guru dan admin.');const opts=permission.allowedClasses.map(c=>`<option value="${escapeAttr(c)}">Kelas ${escapeHtml(c)}</option>`).join('');$('kelas').innerHTML=opts;const now=new Date();$('tanggal').value=toLocalDate(now);bindSidebar();await refreshHistory();}catch(e){showNotice(e.message,'error');$('btnLoad').disabled=true;}}
+function toLocalDate(d){return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}const escapeAttr=escapeHtml;
+async function refreshHistory(){const r=await get('getNilaiAssessments',{kelas:$('kelas').value});if(r.status!=='success')throw Error(r.message);$('riwayat').innerHTML='<option value="">Penilaian baru</option>'+r.data.map(x=>`<option value="${escapeAttr(x.id)}">${escapeHtml(x.tanggal)} · ${escapeHtml(x.mapel)} · ${escapeHtml(x.materi)} (${escapeHtml(x.jenis)})</option>`).join('');}
+$('kelas').onchange=()=>{roster=[];$('gradePanel').classList.add('hidden');$('loadStatus').textContent='Memperbarui daftar penilaian...';refreshHistory().then(()=>$('loadStatus').textContent='Kelas berubah. Tekan “Tampilkan daftar siswa” untuk memuat daftar kelas ini.').catch(e=>{$('loadStatus').textContent='Gagal memuat riwayat: '+e.message;showNotice(e.message,'error');});};
+async function loadRoster(){const b=$('btnLoad');if(b.disabled)return;const kelas=$('kelas').value;if(!kelas){$('loadStatus').textContent='Belum ada kelas yang bisa dipilih. Periksa akses kelas guru/admin.';showNotice('Pilih atau atur kelas akses terlebih dahulu.','error');return;}buttonBusy(b,true,'Memuat siswa...');$('loadStatus').textContent=`Sedang memuat daftar siswa kelas ${kelas}...`;try{const id=$('riwayat').value;const r=await get('getNilaiRoster',{kelas,penilaianId:id});if(r.status!=='success')throw Error(r.message||'Server menolak permintaan daftar siswa.');if(!Array.isArray(r.data))throw Error('Balasan server tidak berisi daftar siswa.');roster=r.data;if(id){const opt=$('riwayat').selectedOptions[0].textContent;const parts=opt.split(' · ');$('tanggal').value=parts[0];$('mapel').value=(parts[1]||'').trim();const tail=(parts[2]||'').split(' (');$('materi').value=tail[0]||'';$('jenis').value=(tail[1]||'').replace(/\)$/,'');}renderRoster();$('gradePanel').classList.remove('hidden');$('btnDelete').classList.toggle('hidden',!id);$('gradeSubtitle').textContent=`Kelas ${kelas} · ${roster.length} siswa`;$('loadStatus').textContent=roster.length?`Daftar ${roster.length} siswa kelas ${kelas} berhasil dimuat. Isi nilai pada kolom di samping nama.`:`Tidak ada siswa ditemukan untuk kelas ${kelas}. Periksa kolom Kelas pada sheet Murid dan pastikan nilainya sama dengan kelas yang dipilih.`;if(!roster.length)showNotice('Daftar siswa kosong. Periksa kecocokan kelas pada sheet Murid.','error');else showNotice(`${roster.length} siswa berhasil dimuat.`);}catch(e){roster=[];$('gradePanel').classList.add('hidden');$('loadStatus').textContent='Gagal memuat daftar siswa: '+e.message;showNotice('Gagal memuat daftar siswa: '+e.message,'error');}finally{buttonBusy(b,false);}}
+function renderRoster(){const tb=$('studentRows');tb.innerHTML='';if(!roster.length){tb.innerHTML='<tr><td colspan="4" class="p-6 text-center text-gray-500">Belum ada siswa pada kelas yang dipilih.</td></tr>';return;}roster.forEach((x,i)=>{const tr=document.createElement('tr');tr.className='border-b last:border-0';tr.innerHTML=`<td class="p-3 text-gray-500">${i+1}</td><td class="p-3 font-medium text-gray-800"></td><td class="p-3"><input aria-label="Nilai" type="number" min="0" max="100" step="0.01" class="score w-28 rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-indigo-400" value="${escapeAttr(x.nilai??'')}"></td><td class="p-3"><input aria-label="Catatan" class="comment w-full min-w-40 rounded-lg border border-gray-300 p-2 focus:ring-2 focus:ring-indigo-400" maxlength="250" value="${escapeAttr(x.catatan||'')}"></td>`;tr.children[1].textContent=x.nama;tb.appendChild(tr);});}
+$('btnLoad').onclick=loadRoster;$('btnClear').onclick=async()=>{$('riwayat').value='';currentId='';roster=[];$('gradePanel').classList.add('hidden');$('loadStatus').textContent='Penilaian baru siap. Pilih kelas dan tekan “Tampilkan daftar siswa”.';$('tanggal').value=toLocalDate(new Date());$('mapel').value='';$('materi').value='';$('jenis').value='Tugas';try{await refreshHistory();}catch(e){showNotice(e.message,'error');}};
+$('btnSave').onclick=async()=>{const b=$('btnSave');if(b.disabled)return;if(!roster.length){showNotice('Tampilkan daftar siswa terlebih dahulu.','error');return;}buttonBusy(b,true,'Menyimpan...');try{const nilai=roster.map((s,i)=>({nis:s.nis,nilai:$('studentRows').rows[i].querySelector('.score').value,catatan:$('studentRows').rows[i].querySelector('.comment').value}));const r=await post('simpanNilai',{username:user.username,penilaianId:currentId,kelas:$('kelas').value,tanggal:$('tanggal').value,mapel:$('mapel').value.trim(),materi:$('materi').value.trim(),jenis:$('jenis').value,nilai});if(r.status!=='success')throw Error(r.message);currentId=r.data.penilaianId;$('riwayat').value=currentId;await refreshHistory();$('riwayat').value=currentId;$('btnDelete').classList.remove('hidden');showNotice('Nilai berhasil disimpan.');}catch(e){showNotice(e.message,'error');}finally{buttonBusy(b,false);}};
+$('btnDelete').onclick=async()=>{const b=$('btnDelete');if(!currentId||b.disabled)return;if(!confirm('Hapus seluruh nilai pada penilaian ini?'))return;buttonBusy(b,true,'Menghapus...');try{const r=await post('hapusPenilaian',{username:user.username,kelas:$('kelas').value,penilaianId:currentId});if(r.status!=='success')throw Error(r.message);$('gradePanel').classList.add('hidden');currentId='';await refreshHistory();showNotice('Penilaian berhasil dihapus.');}catch(e){showNotice(e.message,'error');}finally{buttonBusy(b,false);}};
+
+function bindSidebar(){const b=$('menuBtn'),side=$('sidebar'),overlay=$('overlay');if(b&&side&&overlay){b.onclick=()=>{side.classList.toggle('-translate-x-full');overlay.classList.toggle('hidden');};overlay.onclick=()=>{side.classList.add('-translate-x-full');overlay.classList.add('hidden');};}const nav=document.querySelector('#sidebar nav'),m=nav&&nav.querySelector('a[href="materi.html"]');if(m&&!nav.querySelector('[data-menu-nilai]')){const a=document.createElement('a');a.href='nilai.html';a.dataset.menuNilai='1';a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg bg-indigo-800 text-white transition-colors';a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5-1a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg> Input Nilai';m.insertAdjacentElement('afterend',a);}}
+function logout(){localStorage.removeItem('lms_user');location.href='index.html';}
+init();
+</script>
+</body></html>
