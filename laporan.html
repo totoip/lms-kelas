@@ -127,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- CARD 1: CETAK DATA SISWA -->
                 <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                     <h3 class="font-bold text-lg text-gray-800 mb-2 border-b pb-2">1. Rekap Data Siswa</h3>
@@ -155,7 +155,7 @@
                     </select>
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan</label>
                     <input type="month" id="bulanAbsen" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4">
-                    <button onclick="cetakAbsensi()" id="btnCetakAbsensi" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition">
+                    <button onclick="cetakAbsensi()" id="btnCetakAbsensi" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Tarik Data & Cetak
                     </button>
                 </div>
@@ -181,26 +181,26 @@
                     <label class="block text-sm font-semibold text-gray-700 mb-1">Bulan</label>
                     <input type="month" id="bulanJurnal" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4">
                     
-                    <button onclick="cetakJurnal()" id="btnCetakJurnal" class="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition">
+                    <button onclick="cetakJurnal()" id="btnCetakJurnal" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Tarik Data & Cetak
                     </button>
                 </div>
-            </div>
 
-            <section id="nilaiRekapCard" class="hidden bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+            <div id="nilaiRekapCard" class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                 <h3 class="font-bold text-lg text-gray-800 mb-2 border-b pb-2">4. Rekap Nilai Siswa</h3>
-                <p class="text-sm text-gray-500 mb-4">Cetak rekap nilai satu kelas dalam tabel per siswa.</p>
-                <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas</label>
-                <select id="nilaiRekapKelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4"></select>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                <p class="text-sm text-gray-500 mb-4">Cetak rekap nilai satu kelas per siswa untuk rentang tanggal yang dipilih.</p>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Kelas</label>
+                <select id="nilaiRekapKelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-3"><option value="">Memuat kelas...</option></select>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                     <div><label class="block text-sm font-semibold text-gray-700 mb-1">Dari Tanggal</label><input type="date" id="nilaiRekapDari" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
                     <div><label class="block text-sm font-semibold text-gray-700 mb-1">Sampai Tanggal</label><input type="date" id="nilaiRekapSampai" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
                 </div>
-                <button onclick="cetakRekapNilai()" id="btnCetakRekapNilai" class="w-full py-2 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Tarik Data &amp; Cetak
+                <button onclick="cetakRekapNilai()" id="btnCetakRekapNilai" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 text-white font-semibold rounded-lg text-sm flex justify-center items-center gap-2 transition" disabled>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17a2 2 0 002 2h6a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg> Tarik Data &amp; Cetak
                 </button>
                 <p id="nilaiRekapStatus" class="text-sm text-gray-500 mt-3"></p>
-            </section>
+            </div>
+            </div>
         </main>
     </div>
 
@@ -283,38 +283,42 @@
         document.getElementById('overlay').addEventListener('click', () => { document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('overlay').classList.add('hidden'); });
 
         // REKAP NILAI: satu tombol tarik data dan cetak, mengikuti pola laporan lain.
-        let rekapNilaiLoaded = false;
         function reportNilaiNotice(message,error=false){const el=document.getElementById('nilaiRekapStatus');el.textContent=message;el.className='text-sm mt-3 '+(error?'text-red-600':'text-emerald-700');}
         async function setupRekapNilai(){
-            const card=document.getElementById('nilaiRekapCard');
+            const button=document.getElementById('btnCetakRekapNilai');
             const role=String((user&&user.role)||'').toLowerCase(),peran=String((user&&user.peran)||'').toLowerCase();
             if(!user||!(role==='guru'||role==='admin'||peran==='admin'))return;
-            try{const res=await fetch(`${GAS_URL}?action=getNilaiAccess&username=${encodeURIComponent(user.username)}`),result=await res.json();if(result.status!=='success')return;
-                document.getElementById('nilaiRekapKelas').innerHTML=result.data.allowedClasses.map(k=>`<option value="${escapeNilaiPrint(k)}">Kelas ${escapeNilaiPrint(k)}</option>`).join('');
-                const now=new Date(),local=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('nilaiRekapDari').value=now.getFullYear()+'-01-01';document.getElementById('nilaiRekapSampai').value=local;card.classList.remove('hidden');
-            }catch(e){console.log('Rekap nilai belum dapat dimuat.');}
+            reportNilaiNotice('Memuat pilihan kelas...');
+            try{const res=await fetch(`${GAS_URL}?action=getNilaiAccess&username=${encodeURIComponent(user.username)}`),result=await res.json();if(result.status!=='success')throw new Error(result.message||'Daftar kelas gagal dimuat.');
+                const classes=Array.isArray(result.data.allowedClasses)?result.data.allowedClasses:[];
+                document.getElementById('nilaiRekapKelas').innerHTML=classes.map(k=>{const value=escapeNilaiPrint(k),label=/^kelas\s/i.test(String(k))?String(k):`Kelas ${k}`;return `<option value="${value}">${escapeNilaiPrint(label)}</option>`;}).join('');
+                if(!classes.length)throw new Error('Belum ada kelas yang dapat diakses akun ini.');
+                const now=new Date(),local=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('nilaiRekapDari').value=now.getFullYear()+'-01-01';document.getElementById('nilaiRekapSampai').value=local;button.disabled=false;reportNilaiNotice('Pilih kelas dan rentang tanggal, lalu tekan Tarik Data & Cetak.');
+            }catch(e){reportNilaiNotice(e.message||'Daftar kelas gagal dimuat.',true);}
         }
         function escapeNilaiPrint(value){return String(value==null?'':value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
         async function cetakRekapNilai(){
             const btn=document.getElementById('btnCetakRekapNilai');if(btn.disabled)return;
-            const label=btn.innerHTML;btn.disabled=true;btn.classList.add('opacity-60','cursor-wait');btn.innerHTML='Memuat Data...';rekapNilaiLoaded=false;
-            try{await fetchSekolah();
+            const label=btn.innerHTML;btn.disabled=true;btn.classList.add('opacity-60','cursor-wait');btn.innerHTML='Memuat Data...';
+            try{
                 const kelas=document.getElementById('nilaiRekapKelas').value,dari=document.getElementById('nilaiRekapDari').value,sampai=document.getElementById('nilaiRekapSampai').value;
                 if(!kelas)throw new Error('Silakan pilih kelas.');
-                if(dari&&sampai&&dari>sampai)throw new Error('Tanggal awal tidak boleh setelah tanggal akhir.')
-                const qs=new URLSearchParams({action:'getRekapNilai',username:user.username,kelas});const response=await fetch(`${GAS_URL}?${qs}`),result=await response.json();
+                if(!dari||!sampai)throw new Error('Silakan isi tanggal awal dan tanggal akhir.');
+                if(dari>sampai)throw new Error('Tanggal awal tidak boleh setelah tanggal akhir.');
+                if(!dataSekolahGlobal)await fetchSekolah();
+                const qs=new URLSearchParams({action:'getRekapNilai',username:user.username,kelas,dari,sampai});const response=await fetch(`${GAS_URL}?${qs}`),result=await response.json();
                 if(result.status!=='success')throw new Error(result.message||'Rekap nilai gagal dimuat.');
-                const records=result.data.entries.filter(x=>{const tanggal=String(x.tanggal||'').replace(/^'/,'').slice(0,10);return (!dari||tanggal>=dari)&&(!sampai||tanggal<=sampai);});
+                const records=result.data.entries;
                 const assessments=[],seen={};records.forEach(x=>{const key=x.id||[x.tanggal,x.mapel,x.materi,x.jenis].join('|');if(!seen[key]){seen[key]=true;assessments.push({id:key,tanggal:x.tanggal,mapel:x.mapel,materi:x.materi,jenis:x.jenis});}});
                 assessments.sort((a,b)=>a.tanggal.localeCompare(b.tanggal)||a.mapel.localeCompare(b.mapel)||a.materi.localeCompare(b.materi));
                 const values={};records.forEach(x=>{const nis=String(x.nis||'').trim(),key=x.id||[x.tanggal,x.mapel,x.materi,x.jenis].join('|');values[nis+'|'+key]=x.nilai;});
                 const roster=result.data.students.slice().sort((a,b)=>a.nama.localeCompare(b.nama,'id'));
                 const periode=(dari?new Intl.DateTimeFormat('id-ID',{dateStyle:'long'}).format(new Date(dari+'T00:00:00')):'Semua tanggal')+' s.d. '+(sampai?new Intl.DateTimeFormat('id-ID',{dateStyle:'long'}).format(new Date(sampai+'T00:00:00')):'sekarang');
-                const head2=assessments.map(a=>`<th>${escapeNilaiPrint(a.mapel)}<br>${escapeNilaiPrint(a.materi)}<br><small>${escapeNilaiPrint(a.tanggal)} · ${escapeNilaiPrint(a.jenis)}</small></th>`).join('');
+                const head2=assessments.map(a=>`<th>${escapeNilaiPrint(a.mapel)}<br>${escapeNilaiPrint(a.materi)}</th>`).join('');
                 const body=roster.length?roster.map((s,i)=>`<tr><td class="text-center">${i+1}</td><td>${escapeNilaiPrint(s.nama)}</td>${assessments.map(a=>`<td class="text-center">${escapeNilaiPrint(values[s.nis+'|'+a.id]??'')}</td>`).join('')}</tr>`).join(''):`<tr><td class="text-center" colspan="${Math.max(2,assessments.length+2)}">Tidak ada data nilai.</td></tr>`;
                 const count=Math.max(assessments.length,1);
                 document.getElementById('printArea').innerHTML=`<div class="print-header"><h1>REKAPITULASI NILAI SISWA</h1><h2>${escapeNilaiPrint(getNamaSekolah())}</h2><p>Periode: ${escapeNilaiPrint(periode)} &nbsp; | &nbsp; Kelas: ${escapeNilaiPrint(kelas)}</p></div><table style="table-layout:auto"><thead><tr><th rowspan="2" width="5%">No.</th><th rowspan="2" width="22%">Nama Murid</th><th colspan="${count}">Nilai</th></tr><tr>${assessments.length?head2:'<th>Belum ada kolom penilaian</th>'}</tr></thead><tbody>${body}</tbody></table>${getSignatureBlock()}`;
-                rekapNilaiLoaded=true;reportNilaiNotice(`${roster.length} siswa dan ${assessments.length} kolom penilaian siap dicetak.`);window.print();
+                reportNilaiNotice(`${roster.length} siswa dan ${assessments.length} kolom penilaian siap dicetak.`);window.print();
             }catch(e){reportNilaiNotice(e.message||'Gagal memuat rekap nilai.',true);alert(e.message||'Gagal memuat rekap nilai.');}
             finally{btn.disabled=false;btn.classList.remove('opacity-60','cursor-wait');btn.innerHTML=label;}
         }
@@ -324,6 +328,7 @@
 
         // Fetch Data Sekolah otomatis pas halaman kebuka
         async function fetchSekolah() {
+            if(dataSekolahGlobal)return;
             try {
                 const res = await fetch(`${GAS_URL}?action=getSekolah`);
                 const result = await res.json();
@@ -494,10 +499,16 @@
                 let siswa = [];
                 let rekap = {};
 
+                const optionRes=await fetch(`${GAS_URL}?action=getInputOptions&username=${encodeURIComponent(user.username)}`);
+                const optionData=await optionRes.json();
+                const calendar=optionData.status==='success'?optionData.data:{hariSekolah:5,holidays:[],classes:['1','2','3','4','5','6']};
+                const nonSchoolDates={};(calendar.holidays||[]).forEach(h=>{if(h.date)nonSchoolDates[String(h.date).slice(0,10)]=h.name||h.type||'Hari libur';});
+                const isNonSchoolDate=tgl=>{const date=new Date(tgl+'T00:00:00'),day=date.getDay();return day===0||(Number(calendar.hariSekolah)===5&&day===6)||!!nonSchoolDates[tgl];};
                 if (kls === 'SEMUA') {
+                    const kelasAktif=Array.isArray(calendar.classes)?calendar.classes:['1','2','3','4','5','6'];
                     const hasilKelas = await Promise.all(
-                        ['1','2','3','4','5','6'].map(async kelas => {
-                            const res = await fetch(`${GAS_URL}?action=getLaporanAbsen&kelas=${kelas}&bulan=${blnRaw}`);
+                        kelasAktif.map(async kelas => {
+                            const res = await fetch(`${GAS_URL}?action=getLaporanAbsen&kelas=${encodeURIComponent(kelas)}&bulan=${blnRaw}`);
                             return await res.json();
                         })
                     );
@@ -524,7 +535,7 @@
                     
                     let thTanggal = '';
                     for(let d = 1; d <= jmlHari; d++) {
-                        thTanggal += `<th style="width: 1.5%; font-size: 9px;">${d}</th>`;
+                        const dateText=`${yearStr}-${monthStr}-${d.toString().padStart(2, '0')}`,off=isNonSchoolDate(dateText); thTanggal += `<th style="width: 1.5%; font-size: 9px;${off?'background:#fecaca!important;color:#b91c1c!important;':''}" title="${off?(nonSchoolDates[dateText]||'Akhir pekan'):''}">${d}</th>`;
                     }
 
                     let rows = '';
@@ -536,14 +547,15 @@
                             const tglCari = `${yearStr}-${monthStr}-${d.toString().padStart(2, '0')}`;
                             let statusHariIni = '';
                             
-                            if(rekap[s.nis] && rekap[s.nis][tglCari]) {
+                            const tanggalLibur=isNonSchoolDate(tglCari);
+                            if(!tanggalLibur&&rekap[s.nis] && rekap[s.nis][tglCari]) {
                                 statusHariIni = rekap[s.nis][tglCari];
                                 if(statusHariIni === 'H') totalH++;
                                 else if(statusHariIni === 'S') totalS++;
                                 else if(statusHariIni === 'I') totalI++;
                                 else if(statusHariIni === 'A') totalA++;
                             }
-                            tdTanggal += `<td class="text-center" style="font-size: 10px; font-weight: bold; ${!statusHariIni ? 'background: #fdfdfd;' : ''}">${statusHariIni}</td>`;
+                            tdTanggal += `<td class="text-center" style="font-size: 10px; font-weight: bold; ${tanggalLibur?'background:#fee2e2!important;color:#b91c1c!important;':(!statusHariIni?'background:#fdfdfd;':'')}" title="${tanggalLibur?(nonSchoolDates[tglCari]||'Akhir pekan'):''}">${statusHariIni}</td>`;
                         }
 
                         rows += `
@@ -564,7 +576,7 @@
                         <div class="print-header">
                             <h1>REKAPITULASI ABSENSI BULANAN SISWA</h1>
                             <h2>${getNamaSekolah()}</h2>
-                            <p>Bulan: ${namaBulan} ${year} &nbsp; | &nbsp; Kelas: ${kls === 'SEMUA' ? 'Semua Kelas' : kls}</p>
+                            <p>Bulan: ${namaBulan} ${year} &nbsp; | &nbsp; Kelas: ${kls === 'SEMUA' ? 'Semua Kelas' : kls}</p><p style="font-size:10px;color:#b91c1c">Tanggal merah: akhir pekan atau hari libur (tidak dihitung sebagai hari sekolah).</p>
                         </div>
                         <table style="table-layout: fixed;">
                             <thead>
@@ -706,6 +718,12 @@
   if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
  }
 }catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
+</script>
+<script>
+(function(){try{const u=JSON.parse(localStorage.getItem('lms_user')||'null');const role=String(u&&u.role||'').toLowerCase(),peran=String(u&&u.peran||'').toLowerCase();if(!u)return;const nav=document.querySelector('#sidebar nav');if((role==='admin'||peran==='admin')&&nav){const school=nav.querySelector('a[href="data-sekolah.html"]');if(school&&!nav.querySelector('[data-master-menu]')){const a=document.createElement('a');a.href='master.html';a.dataset.masterMenu='1';a.className='flex items-center gap-3 py-2.5 px-4 rounded-lg text-indigo-100 hover:bg-indigo-800 transition-colors';a.innerHTML='<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg> Master Data';school.insertAdjacentElement('afterend',a);}}
+const canUse=role==='admin'||role==='guru'||peran==='admin';if(!canUse)return;const url=String(location.pathname).toLowerCase();if(url.endsWith('/nilai.html'))return;
+fetch(`${location.protocol==='file:'?'https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec':'https://script.google.com/macros/s/AKfycbzlDtL19OHqFoH_CVFSiC0j3dQdHkAModXRVPn_KaZyXfzKcCdzOvBLHw_dOct8I7c6gQ/exec'}?action=getInputOptions&username=${encodeURIComponent(u.username)}`).then(r=>r.json()).then(r=>{if(r.status!=='success')return;const d=r.data;const apply=()=>{document.querySelectorAll('select[id]').forEach(sel=>{const id=sel.id.toLowerCase();if(!/(kelas|class)/.test(id))return;const list=role==='guru'?d.allowedClasses:d.classes;if(!Array.isArray(list))return;const before=Array.from(sel.options).map(o=>o.value+'|'+o.textContent).join('~');const keep=Array.from(sel.options).filter(o=>['semua','all',''].includes(o.value.toLowerCase())&&(!o.value||/semua|all/i.test(o.textContent)));const opts=keep.map(o=>({value:o.value,text:o.textContent}));list.forEach(c=>opts.push({value:c,text:/^kelas\s/i.test(c)?c:'Kelas '+c}));const after=opts.map(o=>o.value+'|'+o.text).join('~');if(before===after)return;const selected=sel.value;sel.innerHTML=opts.map(o=>`<option value="${String(o.value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}">${String(o.text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}</option>`).join('');if(Array.from(sel.options).some(o=>o.value===selected))sel.value=selected;});let list=document.getElementById('masterSubjectDatalist');if(!list){list=document.createElement('datalist');list.id='masterSubjectDatalist';document.body.appendChild(list);}const listHtml=d.subjects.map(x=>`<option value="${String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}"></option>`).join('');if(list.innerHTML!==listHtml)list.innerHTML=listHtml;document.querySelectorAll('input[id]').forEach(input=>{if(/mapel/i.test(input.id)&&!/filter/i.test(input.id)){input.setAttribute('list','masterSubjectDatalist');input.setAttribute('autocomplete','off');}});};apply();new MutationObserver(apply).observe(document.body,{childList:true,subtree:true});}).catch(()=>{});
+}catch(e){console.warn('Pilihan Master belum berhasil dimuat.');}})();
 </script>
 </body>
 </html>
