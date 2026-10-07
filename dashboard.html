@@ -240,7 +240,8 @@
             const peranDashboard = String(user.peran || '').trim().toLowerCase();
             const roleDashboard = String(user.role || '').trim().toLowerCase();
             const isAdminDashboard = roleDashboard === 'admin' || peranDashboard === 'admin';
-            if (isAdminDashboard) { document.getElementById('attendanceClassWidget').classList.remove('hidden'); document.getElementById('attendanceChartWidget').classList.remove('xl:col-span-2'); }
+            if (isAdminDashboard) { document.getElementById('attendanceClassWidget').classList.remove('hidden'); document.getElementById('attendanceChartWidget').classList.remove('xl:col-span-2'); document.getElementById('teacherContentWidget').classList.remove('hidden'); }
+            else document.getElementById('teacherContentWidget').classList.add('hidden');
             if (roleDashboard === 'guru' && (peranDashboard === 'guru kelas' || peranDashboard === 'guru mapel' || peranDashboard === 'guru mata pelajaran')) document.getElementById('journalReminderWidget').classList.remove('hidden');
 
             const btnMulaiAbsen = document.getElementById('btnMulaiAbsen');
@@ -380,8 +381,8 @@
                 const selectedDate=attendanceDate||document.getElementById('attendanceDateSelect').value;
                 const response = await fetch(`${GAS_URL}?action=getDashboardStats&username=${encodeURIComponent(user.username || '')}&date=${encodeURIComponent(selectedDate||'')}`);
                 const result = await response.json();
-                
-                if (result.status === 'success') {
+                if (result.status !== 'success') throw new Error(result.message || 'Server tidak mengirim data dashboard.');
+                {
                     const d = result.data;
                     
                     // Hilangkan efek skeleton
@@ -416,6 +417,11 @@
                 }
             } catch (error) {
                 console.error('Gagal mengambil data dashboard:', error);
+                document.querySelectorAll('.skeleton').forEach(el => { el.classList.remove('skeleton'); el.textContent='—'; });
+                const message=error&&error.message?error.message:'Periksa koneksi atau deployment Apps Script.';
+                const body=document.getElementById('attendanceClassRows');body.innerHTML='';const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=3;cell.className='py-5 text-center text-rose-600';cell.textContent=`Data dashboard gagal dimuat: ${message}`;row.appendChild(cell);body.appendChild(row);
+                const journalErrorCell=document.createElement('td');journalErrorCell.colSpan=4;journalErrorCell.className='py-5 text-center text-rose-600';journalErrorCell.textContent=message;const journalErrorRow=document.createElement('tr');journalErrorRow.appendChild(journalErrorCell);document.getElementById('journalStatsRows').replaceChildren(journalErrorRow);
+                const contentErrorCell=document.createElement('td');contentErrorCell.colSpan=3;contentErrorCell.className='py-5 text-center text-rose-600';contentErrorCell.textContent=message;const contentErrorRow=document.createElement('tr');contentErrorRow.appendChild(contentErrorCell);document.getElementById('teacherContentRows').replaceChildren(contentErrorRow);
             }
         }
 
