@@ -340,6 +340,7 @@
         let mm = today.getMonth() + 1;
         document.getElementById('filterBulan').value = `${yy}-${mm.toString().padStart(2, '0')}`;
         document.getElementById('addJrn_Tanggal').value = today.toISOString().split('T')[0];
+        syncJournalDay('add');
 
         const user = JSON.parse(localStorage.getItem('lms_user'));
         if (!user) window.location.href = 'index.html'; 
@@ -421,6 +422,7 @@
         // ==========================================
         async function autoSyncAbsen(tipe) {
             let prefix = tipe === 'edit' ? 'editJrn' : 'addJrn';
+            syncJournalDay(tipe);
             const tanggal = document.getElementById(`${prefix}_Tanggal`).value;
             const kelas = document.getElementById(`${prefix}_Kelas`).value;
 
@@ -444,6 +446,18 @@
                 document.getElementById(`${prefix}_Hadir`).value = '';
                 document.getElementById(`${prefix}_Absen`).value = '';
             }
+        }
+
+        // Hari mengikuti tanggal saat tanggal berubah; dropdown tetap bisa diedit manual.
+        function syncJournalDay(tipe) {
+            const prefix = tipe === 'edit' ? 'editJrn' : 'addJrn';
+            const value = document.getElementById(`${prefix}_Tanggal`).value;
+            if (!value) return;
+            const [year, month, day] = value.split('-').map(Number);
+            const names = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const field = document.getElementById(`${prefix}_Hari`);
+            const dayName = names[new Date(year, month - 1, day).getDay()];
+            if (Array.from(field.options).some(option => option.value === dayName)) field.value = dayName;
         }
 
         // ==========================================
