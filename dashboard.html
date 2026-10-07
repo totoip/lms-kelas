@@ -394,9 +394,9 @@
                     document.getElementById('statJurnal').innerText = d.jurnal_today;
                     renderAttendanceClassStatus(d.absensi_per_kelas,d.today_label);
                     renderJournalReminder(d.jurnal_reminder);
-                    renderTeacherContent(d.konten_guru,d.materi_tanpa_pembuat);
                     setupAttendanceMonthPicker(d.attendance_months,d.attendance_month_label);
                     renderJournalStats(d.jurnal_stats);
+                    if(String(user.role||'').trim().toLowerCase()==='admin'||String(user.peran||'').trim().toLowerCase()==='admin')fetchDashboardContentStats();
                     
                     // Hitung Persentase Kehadiran
                     const a = d.absen_today;
@@ -423,6 +423,12 @@
                 const journalErrorCell=document.createElement('td');journalErrorCell.colSpan=4;journalErrorCell.className='py-5 text-center text-rose-600';journalErrorCell.textContent=message;const journalErrorRow=document.createElement('tr');journalErrorRow.appendChild(journalErrorCell);document.getElementById('journalStatsRows').replaceChildren(journalErrorRow);
                 const contentErrorCell=document.createElement('td');contentErrorCell.colSpan=3;contentErrorCell.className='py-5 text-center text-rose-600';contentErrorCell.textContent=message;const contentErrorRow=document.createElement('tr');contentErrorRow.appendChild(contentErrorCell);document.getElementById('teacherContentRows').replaceChildren(contentErrorRow);
             }
+        }
+
+        async function fetchDashboardContentStats(){
+            const body=document.getElementById('teacherContentRows');
+            try{const response=await fetch(`${GAS_URL}?action=getDashboardContentStats&username=${encodeURIComponent(user.username||'')}`);const result=await response.json();if(result.status!=='success')throw new Error(result.message||'Ringkasan konten gagal dimuat.');renderTeacherContent(result.data.konten_guru,result.data.materi_tanpa_pembuat);}
+            catch(error){const cell=document.createElement('td'),row=document.createElement('tr');cell.colSpan=3;cell.className='py-5 text-center text-rose-600';cell.textContent=error&&error.message?error.message:'Ringkasan materi dan tugas gagal dimuat.';row.appendChild(cell);body.replaceChildren(row);}
         }
 
         // Fungsi Pembersih Format Jam dari Google Sheets
