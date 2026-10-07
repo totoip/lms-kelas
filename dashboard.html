@@ -190,25 +190,30 @@
                 </div>
             </div>
 
-            <div class="mt-6 grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
-                <section id="attendanceClassWidget" class="hidden bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
-                    <div class="flex items-start justify-between gap-3 mb-4"><div><h3 class="text-lg font-bold text-gray-800">Status Absensi per Kelas</h3><p id="attendanceClassDate" class="text-sm text-gray-500 mt-1">Hari ini</p></div><a href="absensi.html" class="shrink-0 rounded-lg bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">Buka Absensi</a></div>
-                    <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left text-gray-500"><th class="py-2 pr-3">Kelas</th><th class="py-2 px-2 text-center">Tercatat</th><th class="py-2 pl-2 text-right">Status</th></tr></thead><tbody id="attendanceClassRows"><tr><td colspan="3" class="py-5 text-center text-gray-400">Memuat status absensi...</td></tr></tbody></table></div>
-                </section>
-                <section id="journalReminderWidget" class="hidden rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 sm:p-6 shadow-sm">
-                    <div class="flex items-start gap-4"><div class="rounded-xl bg-white p-3 text-blue-600 shadow-sm"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-8 4h5m-9 4h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><div class="min-w-0 flex-1"><h3 class="text-lg font-bold text-gray-800">Pengingat Jurnal Hari Ini</h3><p id="journalReminderText" class="mt-1 text-sm leading-6 text-gray-600">Memeriksa jurnal hari ini...</p><a id="journalReminderAction" href="jurnal.html" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>Buat Jurnal</a></div></div>
-                </section>
-            </div>
+            <section id="journalReminderWidget" class="hidden mt-6 w-full rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-5 sm:p-6 shadow-sm">
+                <div class="flex items-start gap-4"><div class="rounded-xl bg-white p-3 text-blue-600 shadow-sm"><svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h8m-8 4h8m-8 4h5m-9 4h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg></div><div class="min-w-0 flex-1"><h3 class="text-lg font-bold text-gray-800">Pengingat Jurnal Mengajar Hari Ini</h3><p id="journalReminderText" class="mt-1 text-sm leading-6 text-gray-600">Memeriksa jurnal hari ini...</p><div id="journalReminderItems" class="mt-3 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-2"></div><a id="journalReminderAction" href="jurnal.html" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>Buka Jurnal</a></div></div>
+            </section>
 
-            <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
-                <section class="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
+            <div class="mt-6 grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
+                <section id="attendanceClassWidget" class="hidden bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
+                    <div class="flex flex-wrap items-start justify-between gap-3 mb-4"><div><h3 class="text-lg font-bold text-gray-800">Status Absensi per Kelas</h3><p class="text-sm text-gray-500 mt-1">Pilih tanggal untuk melihat catatan absensi.</p></div><div class="flex items-center gap-2"><input id="attendanceDateSelect" type="date" class="w-40 rounded-lg border border-gray-300 bg-white px-2.5 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none" aria-label="Tanggal absensi"><a href="absensi.html" class="shrink-0 rounded-lg bg-indigo-50 px-3 py-2 text-sm font-semibold text-indigo-700 hover:bg-indigo-100">Absensi</a></div></div>
+                    <div class="overflow-x-auto"><table class="w-full table-fixed text-sm"><colgroup><col style="width:27%"><col style="width:22%"><col style="width:51%"></colgroup><thead><tr class="border-b text-left text-gray-500"><th class="py-2 pr-2">Kelas</th><th class="py-2 px-1 text-center">Tercatat</th><th class="py-2 pl-2 text-right">Status & Rincian</th></tr></thead><tbody id="attendanceClassRows"><tr><td colspan="3" class="py-5 text-center text-gray-400">Memuat status absensi...</td></tr></tbody></table></div>
+                </section>
+                <section id="attendanceChartWidget" class="xl:col-span-2 bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
                     <div class="flex flex-wrap items-start justify-between gap-2 mb-4"><div><h3 class="text-lg font-bold text-gray-800">Grafik Rekap Kehadiran Bulanan</h3><p id="attendanceMonthLabel" class="text-sm text-gray-500 mt-1">Memuat data kehadiran...</p></div><div class="flex flex-wrap items-center gap-3"><label for="attendanceMonthSelect" class="text-sm font-medium text-gray-600">Pilih bulan</label><select id="attendanceMonthSelect" class="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-700 focus:border-blue-500 focus:outline-none"><option value="">Memuat...</option></select><span class="text-xs text-gray-400">Arahkan kursor ke batang untuk rincian</span></div></div>
                     <div id="attendanceChartWrap" class="relative w-full overflow-x-auto"><svg id="attendanceChart" class="w-full min-w-[680px]" viewBox="0 0 900 290" role="img" aria-label="Grafik rekap kehadiran bulanan"></svg><div id="attendanceChartTooltip" class="hidden pointer-events-none absolute z-10 rounded-lg bg-gray-900 px-3 py-2 text-xs leading-5 text-white shadow-lg whitespace-pre-line"></div></div>
                     <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold"><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-emerald-500"></i>Hadir</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-amber-400"></i>Sakit</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-blue-500"></i>Izin</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-rose-500"></i>Alfa</span></div>
                 </section>
+            </div>
+
+            <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
                 <section id="journalStatsWidget" class="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
                     <div class="mb-4"><h3 class="text-lg font-bold text-gray-800">Statistik Isian Jurnal</h3><p class="text-sm text-gray-500 mt-1">Jumlah jurnal yang dibuat hari ini, bulan ini, dan tahun ini.</p></div>
                     <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left text-gray-500"><th class="py-2 pr-3">Nama Guru</th><th class="py-2 px-2 text-center">Hari ini</th><th class="py-2 px-2 text-center">Bulan ini</th><th class="py-2 pl-2 text-center">Tahun ini</th></tr></thead><tbody id="journalStatsRows"><tr><td colspan="4" class="py-5 text-center text-gray-400">Memuat statistik jurnal...</td></tr></tbody></table></div>
+                </section>
+                <section id="teacherContentWidget" class="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
+                    <div class="mb-4"><h3 class="text-lg font-bold text-gray-800">Materi & Tugas Guru</h3><p id="teacherContentNote" class="text-sm text-gray-500 mt-1">Ringkasan materi dan tugas berdasarkan pembuat.</p></div>
+                    <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left text-gray-500"><th class="py-2 pr-2">Nama Guru</th><th class="py-2 px-1 text-center">Materi</th><th class="py-2 pl-1 text-center">Tugas</th></tr></thead><tbody id="teacherContentRows"><tr><td colspan="3" class="py-5 text-center text-gray-400">Memuat ringkasan materi dan tugas...</td></tr></tbody></table></div>
                 </section>
             </div>
             
@@ -234,7 +239,8 @@
             // Murid       : keduanya tidak aktif
             const peranDashboard = String(user.peran || '').trim().toLowerCase();
             const roleDashboard = String(user.role || '').trim().toLowerCase();
-            if (roleDashboard === 'admin' || peranDashboard === 'admin') document.getElementById('attendanceClassWidget').classList.remove('hidden');
+            const isAdminDashboard = roleDashboard === 'admin' || peranDashboard === 'admin';
+            if (isAdminDashboard) { document.getElementById('attendanceClassWidget').classList.remove('hidden'); document.getElementById('attendanceChartWidget').classList.remove('xl:col-span-2'); }
             if (roleDashboard === 'guru' && (peranDashboard === 'guru kelas' || peranDashboard === 'guru mapel' || peranDashboard === 'guru mata pelajaran')) document.getElementById('journalReminderWidget').classList.remove('hidden');
 
             const btnMulaiAbsen = document.getElementById('btnMulaiAbsen');
@@ -277,6 +283,7 @@
         // === SCRIPT SAKTI PENYEMBUNYI MENU UNTUK MURID ===
         if (String(user.role||'').toLowerCase() === 'murid' || String(user.peran||'').toLowerCase() === 'murid') {
             document.getElementById('journalStatsWidget').classList.add('hidden');
+            document.getElementById('teacherContentWidget').classList.add('hidden');
             const linksToHide = ['data-sekolah.html', 'data-guru.html', 'data-murid.html', 'jurnal.html', 'laporan.html'];
             document.querySelectorAll('#sidebar nav a').forEach(link => {
                 if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
@@ -336,30 +343,42 @@
 
         function renderAttendanceClassStatus(rows,dateLabel){
             const body=document.getElementById('attendanceClassRows');body.innerHTML='';
-            document.getElementById('attendanceClassDate').textContent=dateLabel||'Hari ini';
             if(!Array.isArray(rows)||!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.className='py-5 text-center text-gray-400';td.textContent='Belum ada data murid aktif untuk ditampilkan.';tr.appendChild(td);body.appendChild(tr);return;}
             rows.forEach(item=>{
                 const tr=document.createElement('tr');tr.className='border-b last:border-0 align-top';
-                const kelas=document.createElement('td');kelas.className='py-3 pr-3 font-semibold text-gray-800';kelas.textContent=item.kelas;
-                const count=document.createElement('td');count.className='py-3 px-2 text-center text-gray-600';count.textContent=`${item.tercatat}/${item.total}`;
-                const statusCell=document.createElement('td');statusCell.className='py-3 pl-2 text-right';
+                const kelas=document.createElement('td');kelas.className='py-3 pr-2 font-semibold text-gray-800 break-words';kelas.textContent=item.kelas;
+                const count=document.createElement('td');count.className='py-3 px-1 text-center text-gray-600 tabular-nums';count.textContent=`${item.tercatat}/${item.total}`;
+                const statusCell=document.createElement('td');statusCell.className='py-3 pl-2 text-right break-words';
                 const badge=document.createElement('span');badge.className=item.status==='Sudah'?'inline-flex rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700':item.status==='Sebagian'?'inline-flex rounded-full bg-amber-50 px-2.5 py-1 text-xs font-bold text-amber-700':'inline-flex rounded-full bg-rose-50 px-2.5 py-1 text-xs font-bold text-rose-700';badge.textContent=item.status;statusCell.appendChild(badge);
                 const absences=[['Sakit',item.sakit],['Izin',item.izin],['Alfa',item.alfa]].filter(([,names])=>Array.isArray(names)&&names.length);
-                if(absences.length){const details=document.createElement('details');details.className='mt-2 text-left';const summary=document.createElement('summary');summary.className='cursor-pointer text-xs font-semibold text-indigo-700';summary.textContent=`Lihat ${absences.reduce((n,[,names])=>n+names.length,0)} murid`;details.appendChild(summary);const list=document.createElement('ul');list.className='mt-2 space-y-1 text-xs text-gray-600';absences.forEach(([label,names])=>{const li=document.createElement('li');li.textContent=`${label}: ${names.join(', ')}`;list.appendChild(li);});details.appendChild(list);statusCell.appendChild(details);}
+                if(absences.length){const details=document.createElement('details');details.className='mt-2 text-left';const summary=document.createElement('summary');summary.className='cursor-pointer text-xs font-semibold text-indigo-700';summary.textContent=`Lihat ${absences.reduce((n,[,names])=>n+names.length,0)} murid`;details.appendChild(summary);const list=document.createElement('ul');list.className='mt-2 max-h-36 overflow-y-auto space-y-1 text-xs text-gray-600 break-words';absences.forEach(([label,names])=>{const li=document.createElement('li');li.textContent=`${label}: ${names.join(', ')}`;list.appendChild(li);});details.appendChild(list);statusCell.appendChild(details);}
                 tr.append(kelas,count,statusCell);body.appendChild(tr);
             });
         }
 
         function renderJournalReminder(reminder){
-            const text=document.getElementById('journalReminderText'),action=document.getElementById('journalReminderAction');
-            if(reminder&&reminder.sudah){text.textContent='Jurnal hari ini sudah dibuat. Terima kasih sudah melengkapi catatan pembelajaran.';action.classList.add('hidden');}
-            else{text.textContent='Jurnal hari ini belum dibuat. Isi setelah kegiatan belajar agar catatan pembelajaran tetap lengkap.';action.classList.remove('hidden');}
+            const text=document.getElementById('journalReminderText'),action=document.getElementById('journalReminderAction'),list=document.getElementById('journalReminderItems');list.innerHTML='';
+            const entries=reminder&&Array.isArray(reminder.entries)?reminder.entries:[];
+            if(!entries.length){text.textContent='Tidak ada jadwal mengajar untuk Anda hari ini.';action.classList.add('hidden');return;}
+            const missing=entries.filter(item=>!item.sudah);
+            text.textContent=missing.length?`${missing.length} dari ${entries.length} jam pelajaran pada jadwal hari ini belum memiliki jurnal.`:'Semua jurnal sesuai jadwal hari ini sudah dibuat.';
+            entries.forEach(item=>{const card=document.createElement('div');card.className=item.sudah?'flex items-center justify-between gap-2 rounded-lg border border-emerald-200 bg-white/80 px-3 py-2 text-sm':'flex items-center justify-between gap-2 rounded-lg border border-amber-200 bg-white/80 px-3 py-2 text-sm';const name=document.createElement('span');name.className='min-w-0 font-semibold text-gray-700';name.textContent=`${item.mapel} · ${item.kelas} · Jam ${item.jam_ke}`;const state=document.createElement('span');state.className=item.sudah?'shrink-0 text-xs font-bold text-emerald-700':'shrink-0 text-xs font-bold text-amber-700';state.textContent=item.sudah?'Terisi':'Belum';card.append(name,state);list.appendChild(card);});
+            action.classList.toggle('hidden',missing.length===0);
+        }
+
+        function renderTeacherContent(rows,unassignedMaterials){
+            const body=document.getElementById('teacherContentRows');body.innerHTML='';
+            document.getElementById('teacherContentNote').textContent=unassignedMaterials?`Materi & tugas yang tercatat per guru. ${unassignedMaterials} materi lama belum mencatat nama pembuat.`:'Materi & tugas yang tercatat per guru.';
+            if(!Array.isArray(rows)||!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.className='py-5 text-center text-gray-400';td.textContent='Belum ada materi atau tugas dari guru.';tr.appendChild(td);body.appendChild(tr);return;}
+            rows.forEach(item=>{const tr=document.createElement('tr');tr.className='border-b last:border-0 align-top';const teacher=document.createElement('td');teacher.className='py-3 pr-2 font-medium text-gray-800';teacher.textContent=item.nama;const material=document.createElement('td');material.className='py-3 px-1 text-center';const task=document.createElement('td');task.className='py-3 pl-1 text-center';material.textContent=String(item.materi||0);task.textContent=String(item.tugas||0);
+                const details=document.createElement('details');details.className='mt-1 text-left';const summary=document.createElement('summary');summary.className='cursor-pointer text-xs font-semibold text-indigo-700';summary.textContent='Rincian';details.appendChild(summary);const list=document.createElement('ul');list.className='mt-2 max-h-40 overflow-y-auto space-y-1 text-xs text-gray-600';[['Materi',item.daftarMateri],['Tugas',item.daftarTugas]].forEach(([kind,items])=>{(items||[]).forEach(content=>{const li=document.createElement('li');li.textContent=`${kind}: ${content.judul} · ${content.mapel} · ${content.kelas}`;list.appendChild(li);});});if(!list.children.length){const li=document.createElement('li');li.textContent='Belum ada rincian yang tercatat.';list.appendChild(li);}details.appendChild(list);teacher.appendChild(details);tr.append(teacher,material,task);body.appendChild(tr);});
         }
 
         // === 4. AMBIL DATA REAL DARI GOOGLE APPS SCRIPT ===
-        async function fetchDashboardData() {
+        async function fetchDashboardData(attendanceDate) {
             try {
-                const response = await fetch(`${GAS_URL}?action=getDashboardStats&username=${encodeURIComponent(user.username || '')}`);
+                const selectedDate=attendanceDate||document.getElementById('attendanceDateSelect').value;
+                const response = await fetch(`${GAS_URL}?action=getDashboardStats&username=${encodeURIComponent(user.username || '')}&date=${encodeURIComponent(selectedDate||'')}`);
                 const result = await response.json();
                 
                 if (result.status === 'success') {
@@ -374,6 +393,7 @@
                     document.getElementById('statJurnal').innerText = d.jurnal_today;
                     renderAttendanceClassStatus(d.absensi_per_kelas,d.today_label);
                     renderJournalReminder(d.jurnal_reminder);
+                    renderTeacherContent(d.konten_guru,d.materi_tanpa_pembuat);
                     setupAttendanceMonthPicker(d.attendance_months,d.attendance_month_label);
                     renderJournalStats(d.jurnal_stats);
                     
@@ -496,7 +516,12 @@
         }
 
         // Jalankan fetch 1x saat load
-        window.addEventListener('DOMContentLoaded', fetchDashboardData);
+        window.addEventListener('DOMContentLoaded', () => {
+            const dateInput=document.getElementById('attendanceDateSelect');
+            const today=new Date();dateInput.value=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+            dateInput.addEventListener('change',()=>fetchDashboardData(dateInput.value));
+            fetchDashboardData(dateInput.value);
+        });
         // Jalankan jam setiap detik
         setInterval(updateClockAndSchedule, 1000);
 
