@@ -207,6 +207,8 @@
                 <p class="text-sm text-gray-500 mb-4">Cetak rekap nilai satu kelas per siswa untuk rentang tanggal yang dipilih.</p>
                 <label class="block text-sm font-semibold text-gray-700 mb-1">Pilih Kelas</label>
                 <select id="nilaiRekapKelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-3"><option value="">Memuat kelas...</option></select>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Filter Mata Pelajaran</label>
+                <select id="nilaiRekapMapel" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-3"><option value="">Semua mata pelajaran sesuai akses</option></select>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                     <div><label class="block text-sm font-semibold text-gray-700 mb-1">Dari Tanggal</label><input type="date" id="nilaiRekapDari" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
                     <div><label class="block text-sm font-semibold text-gray-700 mb-1">Sampai Tanggal</label><input type="date" id="nilaiRekapSampai" class="w-full px-4 py-2 border border-gray-300 rounded-lg"></div>
@@ -300,15 +302,21 @@
 
         // REKAP NILAI: satu tombol tarik data dan cetak, mengikuti pola laporan lain.
         function reportNilaiNotice(message,error=false){const el=document.getElementById('nilaiRekapStatus');el.textContent=message;el.className='text-sm mt-3 '+(error?'text-red-600':'text-emerald-700');}
+        let nilaiSubjectsByClass={};
+        function updateRekapNilaiMapel(){const cls=document.getElementById('nilaiRekapKelas').value,select=document.getElementById('nilaiRekapMapel'),subjects=nilaiSubjectsByClass[cls]||[];select.innerHTML='<option value="">Semua mata pelajaran sesuai akses</option>'+subjects.map(s=>`<option value="${escapeNilaiPrint(s)}">${escapeNilaiPrint(s)}</option>`).join('');}
         async function setupRekapNilai(){
             const button=document.getElementById('btnCetakRekapNilai');
             const role=String((user&&user.role)||'').toLowerCase(),peran=String((user&&user.peran)||'').toLowerCase();
             if(!user||!(role==='guru'||role==='admin'||peran==='admin'))return;
-            reportNilaiNotice('Memuat pilihan kelas...');
+            reportNilaiNotice('Memuat pilihan kelas dan mata pelajaran...');
             try{const res=await fetch(`${GAS_URL}?action=getNilaiAccess&username=${encodeURIComponent(user.username)}`),result=await res.json();if(result.status!=='success')throw new Error(result.message||'Daftar kelas gagal dimuat.');
                 const classes=Array.isArray(result.data.allowedClasses)?result.data.allowedClasses:[];
                 document.getElementById('nilaiRekapKelas').innerHTML=classes.map(k=>{const value=escapeNilaiPrint(k),label=/^kelas\s/i.test(String(k))?String(k):`Kelas ${k}`;return `<option value="${value}">${escapeNilaiPrint(label)}</option>`;}).join('');
                 if(!classes.length)throw new Error('Belum ada kelas yang dapat diakses akun ini.');
+                const classSelect=document.getElementById('nilaiRekapKelas'),isHomeroom=String(result.data.peran||'').trim().toLowerCase()==='guru kelas';if(isHomeroom&&classes.length===1){classSelect.disabled=true;classSelect.classList.add('bg-gray-100','cursor-not-allowed','opacity-70');}
+                nilaiSubjectsByClass=result.data.allowedSubjectsByClass||{};updateRekapNilaiMapel();classSelect.addEventListener('change',updateRekapNilaiMapel);
+                const subjects=Array.isArray(result.data.allowedSubjects)?result.data.allowedSubjects:[];
+                if(!subjects.length&&String(result.data.role||'').toLowerCase()!=='admin')throw new Error('Mata pelajaran yang diajarkan belum terdaftar pada Jadwal.');
                 const now=new Date(),local=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);document.getElementById('nilaiRekapDari').value=now.getFullYear()+'-01-01';document.getElementById('nilaiRekapSampai').value=local;button.disabled=false;reportNilaiNotice('Pilih kelas dan rentang tanggal, lalu tekan Tarik Data & Cetak.');
             }catch(e){reportNilaiNotice(e.message||'Daftar kelas gagal dimuat.',true);}
         }
@@ -317,12 +325,12 @@
             const btn=document.getElementById('btnCetakRekapNilai');if(btn.disabled)return;
             const label=btn.innerHTML;btn.disabled=true;btn.classList.add('opacity-60','cursor-wait');btn.innerHTML='Memuat Data...';
             try{
-                const kelas=document.getElementById('nilaiRekapKelas').value,dari=document.getElementById('nilaiRekapDari').value,sampai=document.getElementById('nilaiRekapSampai').value;
+                const kelas=document.getElementById('nilaiRekapKelas').value,mapel=document.getElementById('nilaiRekapMapel').value,dari=document.getElementById('nilaiRekapDari').value,sampai=document.getElementById('nilaiRekapSampai').value;
                 if(!kelas)throw new Error('Silakan pilih kelas.');
                 if(!dari||!sampai)throw new Error('Silakan isi tanggal awal dan tanggal akhir.');
                 if(dari>sampai)throw new Error('Tanggal awal tidak boleh setelah tanggal akhir.');
                 if(!dataSekolahGlobal)await fetchSekolah();
-                const qs=new URLSearchParams({action:'getRekapNilai',username:user.username,kelas,dari,sampai});const response=await fetch(`${GAS_URL}?${qs}`),result=await response.json();
+                const qs=new URLSearchParams({action:'getRekapNilai',username:user.username,kelas,mapel,dari,sampai});const response=await fetch(`${GAS_URL}?${qs}`),result=await response.json();
                 if(result.status!=='success')throw new Error(result.message||'Rekap nilai gagal dimuat.');
                 const records=result.data.entries;
                 const assessments=[],seen={};records.forEach(x=>{const key=x.id||[x.tanggal,x.mapel,x.materi,x.jenis].join('|');if(!seen[key]){seen[key]=true;assessments.push({id:key,tanggal:x.tanggal,mapel:x.mapel,materi:x.materi,jenis:x.jenis});}});
@@ -333,7 +341,7 @@
                 const head2=assessments.map(a=>`<th>${escapeNilaiPrint(a.mapel)}<br>${escapeNilaiPrint(a.materi)}</th>`).join('');
                 const body=roster.length?roster.map((s,i)=>`<tr><td class="text-center">${i+1}</td><td>${escapeNilaiPrint(s.nama)}</td>${assessments.map(a=>`<td class="text-center">${escapeNilaiPrint(values[s.nis+'|'+a.id]??'')}</td>`).join('')}</tr>`).join(''):`<tr><td class="text-center" colspan="${Math.max(2,assessments.length+2)}">Tidak ada data nilai.</td></tr>`;
                 const count=Math.max(assessments.length,1);
-                document.getElementById('printArea').innerHTML=`<div class="print-header"><h1>REKAPITULASI NILAI SISWA</h1><h2>${escapeNilaiPrint(getNamaSekolah())}</h2><p>Periode: ${escapeNilaiPrint(periode)} &nbsp; | &nbsp; Kelas: ${escapeNilaiPrint(kelas)}</p></div><table style="table-layout:auto"><thead><tr><th rowspan="2" width="5%">No.</th><th rowspan="2" width="22%">Nama Murid</th><th colspan="${count}">Nilai</th></tr><tr>${assessments.length?head2:'<th>Belum ada kolom penilaian</th>'}</tr></thead><tbody>${body}</tbody></table>${getSignatureBlock()}`;
+                document.getElementById('printArea').innerHTML=`<div class="print-header"><h1>REKAPITULASI NILAI SISWA</h1><h2>${escapeNilaiPrint(getNamaSekolah())}</h2><p>Periode: ${escapeNilaiPrint(periode)} &nbsp; | &nbsp; Kelas: ${escapeNilaiPrint(kelas)} &nbsp; | &nbsp; Mata Pelajaran: ${escapeNilaiPrint(mapel||'Semua sesuai akses')}</p></div><table style="table-layout:auto"><thead><tr><th rowspan="2" width="5%">No.</th><th rowspan="2" width="22%">Nama Murid</th><th colspan="${count}">Nilai</th></tr><tr>${assessments.length?head2:'<th>Belum ada kolom penilaian</th>'}</tr></thead><tbody>${body}</tbody></table>${getSignatureBlock()}`;
                 reportNilaiNotice(`${roster.length} siswa dan ${assessments.length} kolom penilaian siap dicetak.`);window.print();
             }catch(e){reportNilaiNotice(e.message||'Gagal memuat rekap nilai.',true);alert(e.message||'Gagal memuat rekap nilai.');}
             finally{btn.disabled=false;btn.classList.remove('opacity-60','cursor-wait');btn.innerHTML=label;}
