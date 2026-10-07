@@ -189,6 +189,18 @@
                     <div class="p-3 bg-purple-50 rounded-lg"><svg class="w-7 h-7 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></div>
                 </div>
             </div>
+
+            <div class="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
+                <section class="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-4"><div><h3 class="text-lg font-bold text-gray-800">Grafik Rekap Kehadiran Bulanan</h3><p id="attendanceMonthLabel" class="text-sm text-gray-500 mt-1">Memuat data kehadiran...</p></div><span class="text-xs text-gray-400">Arahkan kursor ke batang untuk rincian</span></div>
+                    <div id="attendanceChartWrap" class="relative w-full overflow-x-auto"><svg id="attendanceChart" class="w-full min-w-[680px]" viewBox="0 0 900 290" role="img" aria-label="Grafik rekap kehadiran bulanan"></svg><div id="attendanceChartTooltip" class="hidden pointer-events-none absolute z-10 rounded-lg bg-gray-900 px-3 py-2 text-xs leading-5 text-white shadow-lg whitespace-pre-line"></div></div>
+                    <div class="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold"><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-emerald-500"></i>Hadir</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-amber-400"></i>Sakit</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-blue-500"></i>Izin</span><span class="flex items-center gap-1.5"><i class="w-2.5 h-2.5 rounded-full bg-rose-500"></i>Alfa</span></div>
+                </section>
+                <section id="journalStatsWidget" class="bg-white p-5 sm:p-6 rounded-xl shadow-sm border border-gray-200 min-w-0">
+                    <div class="mb-4"><h3 class="text-lg font-bold text-gray-800">Statistik Isian Jurnal</h3><p class="text-sm text-gray-500 mt-1">Jumlah jurnal yang dibuat hari ini, bulan ini, dan tahun ini.</p></div>
+                    <div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="border-b text-left text-gray-500"><th class="py-2 pr-3">Nama Guru</th><th class="py-2 px-2 text-center">Hari ini</th><th class="py-2 px-2 text-center">Bulan ini</th><th class="py-2 pl-2 text-center">Tahun ini</th></tr></thead><tbody id="journalStatsRows"><tr><td colspan="4" class="py-5 text-center text-gray-400">Memuat statistik jurnal...</td></tr></tbody></table></div>
+                </section>
+            </div>
             
         </main>
     </div>
@@ -251,7 +263,8 @@
         }
 
         // === SCRIPT SAKTI PENYEMBUNYI MENU UNTUK MURID ===
-        if (user.role === 'murid') {
+        if (String(user.role||'').toLowerCase() === 'murid' || String(user.peran||'').toLowerCase() === 'murid') {
+            document.getElementById('journalStatsWidget').classList.add('hidden');
             const linksToHide = ['data-sekolah.html', 'data-guru.html', 'data-murid.html', 'jurnal.html', 'laporan.html'];
             document.querySelectorAll('#sidebar nav a').forEach(link => {
                 if (linksToHide.includes(link.getAttribute('href'))) link.style.display = 'none';
@@ -276,6 +289,29 @@
         // === 3. STATE DATA JADWAL HARI INI ===
         let jadwalRealHariIni = [];
 
+        function renderAttendanceMonth(rows,monthKey){
+            const svg=document.getElementById('attendanceChart'),tooltip=document.getElementById('attendanceChartTooltip'),wrap=document.getElementById('attendanceChartWrap');
+            const colors={H:'#10b981',S:'#fbbf24',I:'#3b82f6',A:'#f43f5e'};
+            const monthDate=(monthKey||'').split('-'),monthLabel=monthDate.length===2?new Date(Number(monthDate[0]),Number(monthDate[1])-1,1).toLocaleDateString('id-ID',{month:'long',year:'numeric'}):'Bulan ini';
+            document.getElementById('attendanceMonthLabel').textContent=monthLabel+' · sesuai kelas dan akses akun';
+            const days=Array.isArray(rows)?rows:[];if(!days.length){svg.innerHTML='<text x="450" y="145" text-anchor="middle" fill="#9ca3af" font-size="14">Belum ada data kehadiran bulan ini.</text>';return;}
+            const plot={x:48,y:22,w:825,h:205},totals=days.map(d=>Number(d.H||0)+Number(d.S||0)+Number(d.I||0)+Number(d.A||0)),max=Math.max(1,...totals),step=plot.w/days.length,bar=Math.min(16,step*.62),parts=[];
+            for(let tick=0;tick<=4;tick++){const y=plot.y+plot.h-(plot.h*tick/4),value=Math.round(max*tick/4);parts.push(`<line x1="${plot.x}" y1="${y}" x2="${plot.x+plot.w}" y2="${y}" stroke="#e5e7eb"/><text x="${plot.x-9}" y="${y+4}" text-anchor="end" fill="#9ca3af" font-size="10">${value}</text>`);}
+            days.forEach((d,i)=>{const total=totals[i],center=plot.x+i*step+step/2,x=center-bar/2,tip=`${d.date}\nHadir: ${Number(d.H||0)} · Sakit: ${Number(d.S||0)} · Izin: ${Number(d.I||0)} · Alfa: ${Number(d.A||0)}`;let y=plot.y+plot.h;
+                ['H','S','I','A'].forEach(code=>{const value=Number(d[code]||0),height=value/max*plot.h;if(height>0){y-=height;parts.push(`<rect x="${x}" y="${y}" width="${bar}" height="${height}" rx="2" fill="${colors[code]}"/>`);}});
+                parts.push(`<g data-tip="${tip.replace(/\n/g,'&#10;')}" tabindex="0" role="img" aria-label="${tip.replace(/\n/g,', ')}"><rect x="${center-step/2}" y="${plot.y}" width="${step}" height="${plot.h}" fill="transparent"/><title>${tip}</title></g>`);
+                if(i===0||i===days.length-1||i%2===0)parts.push(`<text x="${center}" y="${plot.y+plot.h+20}" text-anchor="middle" fill="#6b7280" font-size="10">${d.day}</text>`);
+            });
+            parts.push(`<line x1="${plot.x}" y1="${plot.y+plot.h}" x2="${plot.x+plot.w}" y2="${plot.y+plot.h}" stroke="#9ca3af"/>`);svg.innerHTML=parts.join('');
+            if(!svg.dataset.tooltipBound){svg.dataset.tooltipBound='1';svg.addEventListener('pointermove',event=>{const hit=event.target.closest('[data-tip]');if(!hit){tooltip.classList.add('hidden');return;}const rect=wrap.getBoundingClientRect();tooltip.textContent=hit.dataset.tip;tooltip.style.left=Math.max(0,Math.min(event.clientX-rect.left+12,rect.width-205))+'px';tooltip.style.top=Math.max(0,event.clientY-rect.top-58)+'px';tooltip.classList.remove('hidden');});svg.addEventListener('pointerleave',()=>tooltip.classList.add('hidden'));svg.addEventListener('focusout',()=>tooltip.classList.add('hidden'));}
+        }
+
+        function renderJournalStats(rows){
+            const body=document.getElementById('journalStatsRows');body.innerHTML='';
+            if(!Array.isArray(rows)||!rows.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=4;td.className='py-5 text-center text-gray-400';td.textContent='Belum ada data jurnal.';tr.appendChild(td);body.appendChild(tr);return;}
+            rows.forEach(item=>{const tr=document.createElement('tr');tr.className='border-b last:border-0 hover:bg-gray-50';[item.nama,item.hariIni,item.bulanIni,item.tahunIni].forEach((value,index)=>{const td=document.createElement('td');td.className=index?'py-3 px-2 text-center font-semibold text-gray-700':'py-3 pr-3 font-medium text-gray-800';td.textContent=String(value??0);tr.appendChild(td);});body.appendChild(tr);});
+        }
+
         // === 4. AMBIL DATA REAL DARI GOOGLE APPS SCRIPT ===
         async function fetchDashboardData() {
             try {
@@ -292,6 +328,8 @@
                     document.getElementById('statMurid').innerText = d.total_murid;
                     document.getElementById('statTugas').innerText = d.total_tugas;
                     document.getElementById('statJurnal').innerText = d.jurnal_today;
+                    renderAttendanceMonth(d.attendance_month,d.attendance_month_label);
+                    renderJournalStats(d.jurnal_stats);
                     
                     // Hitung Persentase Kehadiran
                     const a = d.absen_today;
@@ -432,7 +470,7 @@
  }
  if(location.pathname.toLowerCase().endsWith('/dashboard.html')){
   const group=document.querySelector('#btnIsiJurnal')?.parentElement;
-  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.textContent='＋ Tambah Nilai';group.appendChild(q);}
+  if(group&&!group.querySelector('[data-quick-nilai]')){const q=document.createElement('a');q.href='nilai.html';q.dataset.quickNilai='1';q.className='px-4 py-2 bg-emerald-600 text-white hover:bg-emerald-700 rounded-lg text-sm font-semibold flex items-center gap-2 transition-colors';q.innerHTML='<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg> Tambah Nilai';group.appendChild(q);}
  }
 }catch(e){console.error('Gagal menampilkan menu nilai',e);}})();
 </script>
